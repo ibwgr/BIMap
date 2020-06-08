@@ -21,11 +21,13 @@ var map = new ga.Map({
 
 // Create a background layer
 var lyr1 = ga.layer.create('ch.swisstopo.pixelkarte-farbe');
-var lyr3 = ga.layer.create('ch.are.belastung-gueterverkehr-bahn');
+var lyr3 = ga.layer.create('ch.bafu.landesforstinventar-vegetationshoehenmodell_relief');
+var lyr2 = ga.layer.create('ch.are.agglomerationen_isolierte_staedte')
+var lyr4 = ga.layer.create('ch.bfs.gebaeude_wohnungs_register')
 
 // Add the background layer in the map
-map.addLayer(lyr3);
 map.addLayer(lyr1);
+map.addLayer(lyr4);
 
 var position = [2709136, 1270186];
 
