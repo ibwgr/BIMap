@@ -1,0 +1,31 @@
+Bsp:
+
+http://localhost:4567/search?bimap&bauart=id
+
+oder
+
+http://localhost:4567?bimap&bauart=id
+
+
+
+
+
+    server.get("/bauart", "application/json",
+            (request, response) -> {
+              response.type("application/json");
+              return bauartService.all();
+            },
+            jsonSerializer::serialize);
+
+
+Unterschied?
+
+
+
+    server.get("/bauart/:id", (request, response) -> {
+      int id = Integer.parseInt(request.params("id"));
+      return bauarttService.getById(id);
+    }, jsonSerializer::serialize);
+
+
+>>>>>>>>>>??in etwa so??<<<<<<<<<<<
