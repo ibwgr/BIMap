@@ -1,21 +1,20 @@
-use bimaptest;
+CREATE DATABASE IF NOT EXISTS `bimap`;
+use bimap;
 
 /* Tabellen löschen */
-
-DROP TABLE IF EXISTS bimaptest.projekt;
-DROP TABLE IF EXISTS bimaptest.bauart;
-DROP TABLE IF EXISTS bimaptest.projektverfasser;
-DROP TABLE IF EXISTS bimaptest.leistung;
-DROP TABLE IF EXISTS bimaptest.ort;
-DROP TABLE IF EXISTS bimaptest.bauherr;
-DROP TABLE IF EXISTS bimaptest.bauartprojekt;
-DROP TABLE IF EXISTS bimaptest.projektverfasserprojekt;
-DROP TABLE IF EXISTS bimaptest.leistungprojekt;
+DROP TABLE IF EXISTS projekt;
+DROP TABLE IF EXISTS bauart;
+DROP TABLE IF EXISTS projektverfasser;
+DROP TABLE IF EXISTS leistung;
+DROP TABLE IF EXISTS ort;
+DROP TABLE IF EXISTS bauherr;
+DROP TABLE IF EXISTS bauartprojekt;
+DROP TABLE IF EXISTS projektverfasserprojekt;
+DROP TABLE IF EXISTS leistungprojekt;
 
 
 
 /* Tabellen erzeugen */
-
 
 CREATE TABLE IF NOT EXISTS bauart
 (

@@ -1,18 +1,19 @@
+use bimap;
 
-TRUNCATE TABLE bimaptest.ort;
-TRUNCATE TABLE bimaptest.bauherr;
-TRUNCATE TABLE bimaptest.bauart;
-TRUNCATE TABLE bimaptest.projektverfasser;
-TRUNCATE TABLE bimaptest.leistung;
-TRUNCATE TABLE bimaptest.projekt;
-TRUNCATE TABLE bimaptest.bauartprojekt;
-TRUNCATE TABLE bimaptest.projektverfasserprojekt;
-TRUNCATE TABLE bimaptest.leistungprojekt;
+TRUNCATE TABLE ort;
+TRUNCATE TABLE bauherr;
+TRUNCATE TABLE bauart;
+TRUNCATE TABLE projektverfasser;
+TRUNCATE TABLE leistung;
+TRUNCATE TABLE projekt;
+TRUNCATE TABLE bauartprojekt;
+TRUNCATE TABLE projektverfasserprojekt;
+TRUNCATE TABLE leistungprojekt;
 
 
 
  /* Bauart abfüllen */
-INSERT INTO bimaptest.bauart
+INSERT INTO bauart
 (
 idbauart, bauart
 )
@@ -33,7 +34,7 @@ VALUES
 
 
  /* Prjektverfasser abfüllen */
-INSERT INTO bimaptest.projektverfasser
+INSERT INTO projektverfasser
 (
 idprojektverfasser, projektverfasser
 )
@@ -51,7 +52,7 @@ VALUES
 
 
  /* Leistung abfüllen */
-INSERT INTO bimaptest.leistung
+INSERT INTO leistung
 (
 idleistung, leistungen
 )
@@ -69,7 +70,7 @@ VALUES
 
 
  /* Ort abfüllen */
-INSERT INTO bimaptest.ort
+INSERT INTO ort
 (
 idort, ort, plz
 )
@@ -93,7 +94,7 @@ VALUES
 
 
  /* Bauherr abfüllen */
-INSERT INTO bimaptest.bauherr
+INSERT INTO bauherr
 (
 idbauherr, bauherr
 )
@@ -118,7 +119,7 @@ VALUES
 
 
 /* Projekt abfüllen */
-INSERT INTO bimaptest.projekt
+INSERT INTO projekt
 (
 idprojekt, projektnummer, projektname, ortid, koordx, koordy, realisierungsjahr, bausumme, bauherrid
 )
@@ -142,7 +143,7 @@ VALUES
 
 
  /* Bauerat_Projekt abfüllen */
-INSERT INTO bimaptest.bauartprojekt
+INSERT INTO bauartprojekt
 (
 bauartid, projektid
 )
@@ -166,7 +167,7 @@ VALUES
 
 
  /* Projektverfasser_Projekt abfüllen */
-INSERT INTO bimaptest.projektverfasserprojekt
+INSERT INTO projektverfasserprojekt
 (
 projektverfasserid, projektid
 )
@@ -197,7 +198,7 @@ VALUES
 
 
  /* Leistung_Projekt abfüllen */
-INSERT INTO bimaptest.leistungprojekt
+INSERT INTO leistungprojekt
 (
 leistungid, projektid
 )
