@@ -21,7 +21,7 @@ function postResource(ressource) {
     let anzahl = document.getElementById("anzahl").value
 
     console.log(date + " " + angebotid + anzahl)
-    let url = "http://localhost:3567/" + ressource
+    let url = "http://localhost:4567/" + ressource
     fetch(url, {
         method: 'post',
         headers: {
@@ -44,7 +44,7 @@ getResource("ausgaben")
 
 
 async function getResource(res) {
-    let ausgabe_url = "http://localhost:3567/" + res;
+    let ausgabe_url = "http://localhost:4567/" + res;
     const response = await fetch(ausgabe_url)
     let data = await response.json()
     for (let item of data) {

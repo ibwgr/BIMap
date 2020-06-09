@@ -1,31 +1,20 @@
- /* Projekt abfüllen */
-INSERT INTO bimap.projekt
-(
-id, projektnummer, projektname, ortid, koordx, koordy, realisierungsjahr, bausumme, bauherrid
-)
-VALUES
-(
- '1', '0502', 'Kindergarten Taescherloch', '1', '2759543', '1220275', '2009' ,'2860000', '1'
-),
-(
- '2', '0919', 'Gewerbehalle Balzers', '2', '2757459', '1216049 ', '2011' ,'3500000', '2'
-),
-(
- '3', '0943b', 'MFH Stubi', '3', '2764691', '1218983', '2016' ,'7940000', '3'
-),
-(
- '4', '1002', 'EFH Hasler', '4', '2756850', '1232394', '2012' ,'915000', '2'
-)
-(
- '5', '1128', 'MFH Lampert', '5', '2757674', '1225878', '2014' ,'5700000', '2'
-)
-;
+
+TRUNCATE TABLE bimaptest.ort;
+TRUNCATE TABLE bimaptest.bauherr;
+TRUNCATE TABLE bimaptest.bauart;
+TRUNCATE TABLE bimaptest.projektverfasser;
+TRUNCATE TABLE bimaptest.leistung;
+TRUNCATE TABLE bimaptest.projekt;
+TRUNCATE TABLE bimaptest.bauartprojekt;
+TRUNCATE TABLE bimaptest.projektverfasserprojekt;
+TRUNCATE TABLE bimaptest.leistungprojekt;
+
 
 
  /* Bauart abfüllen */
-INSERT INTO bimap.bauart
+INSERT INTO bimaptest.bauart
 (
-id, bauart
+idbauart, bauart
 )
 VALUES
 (
@@ -44,21 +33,27 @@ VALUES
 
 
  /* Prjektverfasser abfüllen */
-INSERT INTO bimap.projektverfasser
+INSERT INTO bimaptest.projektverfasser
 (
-id, projektverfasser
+idprojektverfasser, projektverfasser
 )
 VALUES
 (
  '1', 'ARCHITEKTUR PITBAU'
+),
+(
+ '2', 'Lampert Architektur'
+),
+(
+ '3', 'Xylo AG'
 )
 ;
 
 
  /* Leistung abfüllen */
-INSERT INTO bimap.leistung
+INSERT INTO bimaptest.leistung
 (
-id, leistungen
+idleistung, leistungen
 )
 VALUES
 (
@@ -74,9 +69,9 @@ VALUES
 
 
  /* Ort abfüllen */
-INSERT INTO bimap.ort
+INSERT INTO bimaptest.ort
 (
-id, ort, plz
+idort, ort, plz
 )
 VALUES
 (
@@ -98,9 +93,9 @@ VALUES
 
 
  /* Bauherr abfüllen */
-INSERT INTO bimap.bauherr
+INSERT INTO bimaptest.bauherr
 (
-id, bauherr
+idbauherr, bauherr
 )
 VALUES
 (
@@ -114,15 +109,40 @@ VALUES
 ),
 (
  '4', 'Hasler Rainer & Petra'
-)
+),
 (
  '5', 'Clemens Lampert'
 )
 ;
 
 
+
+/* Projekt abfüllen */
+INSERT INTO bimaptest.projekt
+(
+idprojekt, projektnummer, projektname, ortid, koordx, koordy, realisierungsjahr, bausumme, bauherrid
+)
+VALUES
+(
+ '1', '0502', 'Kindergarten Taescherloch', '1', '2759543', '1220275', '2009' ,'2860000', '1'
+),
+(
+ '2', '0919', 'Gewerbehalle Balzers', '2', '2757459', '1216049 ', '2011' ,'3500000', '2'
+),
+(
+ '3', '0943', 'MFH Stubi', '3', '2764691', '1218983', '2016' ,'7940000', '3'
+),
+(
+ '4', '1002', 'EFH Hasler', '4', '2756850', '1232394', '2012' ,'915000', '2'
+),
+(
+ '5', '1128', 'MFH Lampert', '5', '2757674', '1225878', '2014' ,'5700000', '2'
+)
+;
+
+
  /* Bauerat_Projekt abfüllen */
-INSERT INTO bimap.bauartprojekt
+INSERT INTO bimaptest.bauartprojekt
 (
 bauartid, projektid
 )
@@ -138,7 +158,7 @@ VALUES
 ),
 (
  '1', '4'
-)
+),
 (
  '2', '5'
 )
@@ -146,7 +166,7 @@ VALUES
 
 
  /* Projektverfasser_Projekt abfüllen */
-INSERT INTO bimap.projektverfasserprojekt
+INSERT INTO bimaptest.projektverfasserprojekt
 (
 projektverfasserid, projektid
 )
@@ -155,6 +175,13 @@ VALUES
  '1', '1'
 ),
 (
+ '2', '1'
+),
+(
+ '3', '1'
+),
+
+(
  '1', '2'
 ),
 (
@@ -162,7 +189,7 @@ VALUES
 ),
 (
  '1', '4'
-)
+),
 (
  '1', '5'
 )
@@ -170,7 +197,7 @@ VALUES
 
 
  /* Leistung_Projekt abfüllen */
-INSERT INTO bimap.leistungprojekt
+INSERT INTO bimaptest.leistungprojekt
 (
 leistungid, projektid
 )
