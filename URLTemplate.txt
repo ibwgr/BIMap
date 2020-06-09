@@ -1,33 +1,29 @@
 
 
 
-/projekte	-->	"select * from projekt" "select ort, plz from ort where id = ortid" "select bauherr from bauherr where id = bauherr" "select bauart from bauart where id = <bauartid>" "select bauartid from bauart_projekt where projektid = <projektid>
+/projekte	-->	"select * from projekt" "select ort, plz from ort where id = ortid" "select bauherr from bauherr where id = bauherr" "select bauart from bauart where id = <bauartid>" "select bauartid from bauartprojekt where projektid = <projektid>
 
 
 
 /projekte/:id	
-
-
-/projekte?fields=id,koordx,koordy 
-
-
  
 /projekte?bauherr="EingabeClient"&Bauart="EingabeClient"
 
 
 In/projekt mit SQL Code implantieren:
 
-/projektverfasserprojekt/:Projektid	-->	"select projekterfasser from projekterfasser where id = <projekterfasserid>" "select projekterfasserid from projekterasser_projekt where projektid = <projektid>
+/projektverfasserprojekt/:Projektid	-->	"select projektverfasserid from projektverfasserprojekt where projektid = <projektid>" "select projekterfasser from projekterfasser where projektverfasserid = <projektverfasserid>" 
 
 
-/leistungprojekt/:projektId	-->	"select leistungsprojekt from leistungsprojekt where id = <leistungsprojektid>" "select leistungsprojektid from leistungs_projekt where projektid = <projektid>
+/leistungprojekt/:projektId	-->	"select leistungid from leistungprojekt where projektid = <projektid>" "select leistung from leistung where leistungid = <leistungid>" 
+
 
 Für Filterfunktionen:
 
-/bauarten
+/bauarten	-->	"select bauart from bauart"
 
-/projekte/bauherren
+/projekte/bauherren	-->	"select bauherr from bauherr"
 
-/projekte/realisierungsjahre
+/projekte/realisierungsjahr	-->	mit Java filtern
 
-/leistungen
+/leistungen	-->	"select Leistung from leistung"
