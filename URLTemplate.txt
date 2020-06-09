@@ -1,31 +1,33 @@
-Bsp:
-
-http://localhost:4567/search?bimap&bauart=id
-
-oder
-
-http://localhost:4567?bimap&bauart=id
 
 
 
-
-
-    server.get("/bauart", "application/json",
-            (request, response) -> {
-              response.type("application/json");
-              return bauartService.all();
-            },
-            jsonSerializer::serialize);
-
-
-Unterschied?
+/projekte	-->	"select * from projekt" "select ort, plz from ort where id = ortid" "select bauherr from bauherr where id = bauherr" "select bauart from bauart where id = <bauartid>" "select bauartid from bauart_projekt where projektid = <projektid>
 
 
 
-    server.get("/bauart/:id", (request, response) -> {
-      int id = Integer.parseInt(request.params("id"));
-      return bauarttService.getById(id);
-    }, jsonSerializer::serialize);
+/projekte/:id	
 
 
->>>>>>>>>>??in etwa so??<<<<<<<<<<<
+/projekte?fields=id,koordx,koordy 
+
+
+ 
+/projekte?bauherr="EingabeClient"&Bauart="EingabeClient"
+
+
+In/projekt mit SQL Code implantieren:
+
+/projektverfasserprojekt/:Projektid	-->	"select projekterfasser from projekterfasser where id = <projekterfasserid>" "select projekterfasserid from projekterasser_projekt where projektid = <projektid>
+
+
+/leistungprojekt/:projektId	-->	"select leistungsprojekt from leistungsprojekt where id = <leistungsprojektid>" "select leistungsprojektid from leistungs_projekt where projektid = <projektid>
+
+Für Filterfunktionen:
+
+/bauarten
+
+/projekte/bauherren
+
+/projekte/realisierungsjahre
+
+/leistungen
