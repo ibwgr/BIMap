@@ -20,20 +20,22 @@ var map = new ga.Map({
 });
 
 // Create a background layer
-var lyr1 = ga.layer.create('ch.swisstopo.pixelkarte-farbe');
-var lyr3 = ga.layer.create('ch.bafu.landesforstinventar-vegetationshoehenmodell_relief');
-var lyr2 = ga.layer.create('ch.are.agglomerationen_isolierte_staedte')
-var lyr4 = ga.layer.create('ch.bfs.gebaeude_wohnungs_register')
+var landeskarte = ga.layer.create('ch.swisstopo.pixelkarte-farbe');
+var Luftbildkarte = ga.layer.create('ch.swisstopo.swissimage')
+var landesgrenze = ga.layer.create('ch.swisstopo.swissnames3d')
+var lufbildkarte1946 = ga.layer.create('ch.swisstopo.swissimage-product')
+var relief = ga.layer.create('ch.swisstopo.swissalti3d-reliefschattierung')
 
 // Add the background layer in the map
-map.addLayer(lyr1);
-map.addLayer(lyr4);
+map.addLayer(Luftbildkarte);
+//map.addLayer(landesgrenze);
+
 
 var position = [2709136, 1270186];
 
 // Zoom on the position
 map.getView().setCenter(position);
-map.getView().setResolution(10);
+map.getView().setResolution(100);
 
 // Create the layer with the icon
 var vectorLayer = new ol.layer.Vector({

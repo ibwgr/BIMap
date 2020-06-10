@@ -1,0 +1,22 @@
+{
+  "name": "bimap",
+  "version": "1.0.0",
+  "description": "SA Building Information Map",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibwgr/BIMap.git"
+  },
+  "author": "D. Nägeli, S. Tuor, M. Spescha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibwgr/BIMap/issues"
+  },
+  "homepage": "https://github.com/ibwgr/BIMap#readme",
+  "dependencies": {
+    "ol": "^6.3.1"
+  }
+}
