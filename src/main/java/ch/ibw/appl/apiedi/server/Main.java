@@ -55,7 +55,7 @@ import java.util.Optional;
 public class Main {
 
   public static void main(String[] args) {
-    String httpPort =  getCLIArgument(args, "server.port", "3567");
+    String httpPort =  getCLIArgument(args, "server.port", "4567");
     Boolean isTest = Boolean.parseBoolean(getCLIArgument(args, "test", "false"));
 
     new HttpServer(httpPort, isTest).start();
