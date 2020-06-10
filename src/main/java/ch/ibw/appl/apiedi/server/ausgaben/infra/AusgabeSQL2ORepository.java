@@ -18,13 +18,13 @@ public class AusgabeSQL2ORepository implements AusgabeRepository<Ausgabe> {
 
     public AusgabeSQL2ORepository(boolean isTest) {
         if(isTest){
-            sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "root", "");
+            sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "root", "db_Nx79");
             try(Connection conn = sql2o.open()){
                 executeFile(conn, "C:\\Users\\mvink\\Documents\\Applikations-Entwicklung\\Privat\\A-PiediApp\\apiedi-java-server\\src\\main\\resources\\META-INF\\createtableAusgaben.sql");
                 executeFile(conn, "C:\\Users\\mvink\\Documents\\Applikations-Entwicklung\\Privat\\A-PiediApp\\apiedi-java-server\\src\\main\\resources\\META-INF\\testdataAusgaben.sql");
             }
         }else{
-            sql2o = new Sql2o("jdbc:mysql://localhost:3306/apiedi", "root", "");
+            sql2o = new Sql2o("jdbc:mysql://localhost:3306/apiedi", "root", "db_Nx79");
         }
     }
 
