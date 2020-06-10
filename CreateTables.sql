@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS projekt
 (
 	idprojekt INT(10) NOT NULL, 
 	projektnummer INT(10),
-	projektname VARCHAR(30),
+	projektname VARCHAR(50),
 	ortid INT,
 	koordx VARCHAR(20),
 	koordy VARCHAR(20),
