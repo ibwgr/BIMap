@@ -1,7 +1,5 @@
 package ch.ibw.appl.apiedi.server.angebot.infra;
 
-import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
-import ch.ibw.appl.apiedi.server.angebot.service.AngebotRepository;
 import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
 import org.sql2o.Connection;
 import org.sql2o.Query;
@@ -12,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
+public class AngebotSQL2ORepository implements ch.ibw.appl.apiedi.server.angebot.service.BauartRepository<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> {
 
   private final Sql2o sql2o;
 
@@ -43,14 +41,14 @@ public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
   }
 
   @Override
-  public List<Angebot> all() {
+  public List<T> all() {
     try(Connection conn = sql2o.open()){
-      return conn.createQuery("select * from angebot").executeAndFetch(Angebot.class);
+      return conn.createQuery("select * from angebot").executeAndFetch(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt.class);
     }
   }
 
   @Override
-  public ModelId add(Angebot angebot) {
+  public ModelId add(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot) {
     try(Connection conn = sql2o.open()){
       Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(angebot);
       int newId = Integer.parseInt(preparedStatement.executeUpdate().getKey().toString());
@@ -60,9 +58,9 @@ public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
   }
 
   @Override
-  public Angebot get(int id) {
-    List<Angebot> angebote = all();
-    for (Angebot angebot : angebote){
+  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt get(int id) {
+    List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebote = all();
+    for (ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot : angebote){
       if (angebot.id == id) {
         return angebot;
       }
@@ -71,7 +69,7 @@ public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
   }
 
   @Override
-  public Angebot findByDescription(String description) {
+  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt findByDescription(String description) {
     return null;
   }
 

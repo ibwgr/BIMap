@@ -1,8 +1,8 @@
-package ch.ibw.appl.apiedi.server.angebot.infra;
+package ch.ibw.appl.apiedi.server.bauart.infra;
 
-import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
-import ch.ibw.appl.apiedi.server.angebot.service.AngebotRepository;
-import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
+import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
+import ch.ibw.appl.apiedi.server.bauart.model.ModelId;
+import ch.ibw.appl.apiedi.server.bauart.service.BauartRepository;
 import org.sql2o.Connection;
 import org.sql2o.Query;
 import org.sql2o.Sql2o;
@@ -12,18 +12,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
+public class BauartSQL2ORepository implements BauartRepository<Bauart> {
 
   private final Sql2o sql2o;
 
-  public AngebotSQL2ORepository(boolean isTest) {
+  public BauartSQL2ORepository(boolean isTest) {
     if(isTest){
-      sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
       try(Connection conn = sql2o.open()){
         executeFile(conn, "C:\\Users\\mvink\\Documents\\Applikations-Entwicklung\\Privat\\A-PiediApp\\apiedi-java-server\\src\\main\\resources\\META-INF\\createtableAngebot.sql");
       }
     }else{
-      sql2o = new Sql2o("jdbc:mysql://localhost:3306/apiedi", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
     }
   }
 
@@ -43,16 +43,16 @@ public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
   }
 
   @Override
-  public List<Angebot> all() {
+  public List<Bauart> all() {
     try(Connection conn = sql2o.open()){
-      return conn.createQuery("select * from angebot").executeAndFetch(Angebot.class);
+      return conn.createQuery("select bauart from bauart").executeAndFetch(Bauart.class);
     }
   }
 
   @Override
-  public ModelId add(Angebot angebot) {
+  public ModelId add(Bauart bauart) {
     try(Connection conn = sql2o.open()){
-      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(angebot);
+      Query preparedStatement = conn.createQuery("insert into bauart", true).bind(bauart);
       int newId = Integer.parseInt(preparedStatement.executeUpdate().getKey().toString());
       System.out.println(newId);
       return ModelId.create(newId);
@@ -60,18 +60,18 @@ public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
   }
 
   @Override
-  public Angebot get(int id) {
-    List<Angebot> angebote = all();
-    for (Angebot angebot : angebote){
-      if (angebot.id == id) {
-        return angebot;
+  public Bauart get(int id) {
+    List<Bauart> bauarten = all();
+    for (Bauart bauart : bauarten){
+      if (bauart.id == id) {
+        return bauart;
       }
     }
     return null;
   }
 
   @Override
-  public Angebot findByDescription(String description) {
+  public Bauart findByDescription(String description) {
     return null;
   }
 

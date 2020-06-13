@@ -1,7 +1,7 @@
 package ch.ibw.appl.apiedi.server.angebot.service;
 
 import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
-import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
+import ch.ibw.appl.apiedi.server.bauart.model.ModelId;
 import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
 import ch.ibw.appl.apiedi.server.shared.service.Repository;
 

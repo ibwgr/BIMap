@@ -1,26 +1,27 @@
-package ch.ibw.appl.apiedi.server.angebot.infra;
+package ch.ibw.appl.apiedi.server.bauart.infra;
 
-import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
-import ch.ibw.appl.apiedi.server.angebot.service.AngebotService;
+
+import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
+import ch.ibw.appl.apiedi.server.bauart.service.BauartService;
 import ch.ibw.appl.apiedi.server.shared.service.JSONSerializer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Service;
 
-public class AngebotController {
-  private AngebotService angebotService;
+public class BauartController {
+  private BauartService bauartService;
 
-  public AngebotController(Boolean isTest) {
-    angebotService = new AngebotService(new AngebotSQL2ORepository(isTest));
+  public BauartController(Boolean isTest) {
+    bauartService = new BauartService(new BauartSQL2ORepository(isTest));
   }
 
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/angebote", "application/json",
+    server.get("/bauart", "application/json",
             (request, response) -> {
               response.type("application/json");
-              return angebotService.all();
+              return bauartService.all();
             },
             jsonSerializer::serialize);
 
@@ -28,15 +29,15 @@ public class AngebotController {
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);
 
-    server.get("/angebote/:id", (request, response) -> {
+    server.get("/bauart", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
-      return angebotService.getById(id);
+      return bauartService.getById(id);
     }, jsonSerializer::serialize);
 
-    server.post("/angebote", (request, response) -> {
-      Angebot angebot = jsonSerializer.deserialize(request.body(), new TypeReference<Angebot>() {});
+    server.post("/bauart", (request, response) -> {
+      Bauart bauart = jsonSerializer.deserialize(request.body(), new TypeReference<Bauart>() {});
       response.status(HttpStatus.CREATED_201);
-      return angebotService.create(angebot);
+      return bauartService.create(bauart);
     }, jsonSerializer::serialize);
   }
 }

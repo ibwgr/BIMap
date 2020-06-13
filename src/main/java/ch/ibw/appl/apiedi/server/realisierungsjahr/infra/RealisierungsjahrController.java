@@ -1,17 +1,15 @@
 package ch.ibw.appl.apiedi.server.angebot.infra;
 
-import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
-import ch.ibw.appl.apiedi.server.angebot.service.AngebotService;
 import ch.ibw.appl.apiedi.server.shared.service.JSONSerializer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Service;
 
 public class AngebotController {
-  private AngebotService angebotService;
+  private ch.ibw.appl.apiedi.server.angebot.service.LeistungprojektService angebotService;
 
   public AngebotController(Boolean isTest) {
-    angebotService = new AngebotService(new AngebotSQL2ORepository(isTest));
+    angebotService = new ch.ibw.appl.apiedi.server.angebot.service.LeistungprojektService(new AngebotSQL2ORepository(isTest));
   }
 
   public void createRoutes(Service server) {
@@ -34,7 +32,7 @@ public class AngebotController {
     }, jsonSerializer::serialize);
 
     server.post("/angebote", (request, response) -> {
-      Angebot angebot = jsonSerializer.deserialize(request.body(), new TypeReference<Angebot>() {});
+      ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot = jsonSerializer.deserialize(request.body(), new TypeReference<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt>() {});
       response.status(HttpStatus.CREATED_201);
       return angebotService.create(angebot);
     }, jsonSerializer::serialize);

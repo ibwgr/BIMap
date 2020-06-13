@@ -1,7 +1,6 @@
 package ch.ibw.appl.apiedi.server.angebot.infra;
 
 import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
-import ch.ibw.appl.apiedi.server.angebot.service.AngebotRepository;
 import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
 import org.sql2o.Connection;
 import org.sql2o.Query;
@@ -12,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
+public class AngebotSQL2ORepository implements ch.ibw.appl.apiedi.server.angebot.service.BauartRepository<Angebot> {
 
   private final Sql2o sql2o;
 
@@ -43,7 +42,7 @@ public class AngebotSQL2ORepository implements AngebotRepository<Angebot> {
   }
 
   @Override
-  public List<Angebot> all() {
+  public List<T> all() {
     try(Connection conn = sql2o.open()){
       return conn.createQuery("select * from angebot").executeAndFetch(Angebot.class);
     }

@@ -1,4 +1,4 @@
 package ch.ibw.appl.apiedi.server.bauart.model;
 
-public class Bauart {
+public class ModelId {
 }
