@@ -19,7 +19,8 @@ public class ProjektSQL2ORepository {
     if(isTest){
       sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "SAS", "sas123");
       try(Connection conn = sql2o.open()){
-        executeFile(conn, "C:\\Users\\mvink\\Documents\\Applikations-Entwicklung\\Privat\\A-PiediApp\\apiedi-java-server\\src\\main\\resources\\META-INF\\createtableAngebot.sql");
+        executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
+        executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
       }
     }else{
       sql2o = new Sql2o("jdbc:mysql://localhost:3306/apiedi", "SAS", "sas123");

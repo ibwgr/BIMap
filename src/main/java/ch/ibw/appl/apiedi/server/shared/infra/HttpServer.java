@@ -1,11 +1,10 @@
 package ch.ibw.appl.apiedi.server.shared.infra;
 
-import ch.ibw.appl.apiedi.server.angebot.infra.BauartController;
-import ch.ibw.appl.apiedi.server.ausgaben.infra.AusgabeController;
 import ch.ibw.appl.apiedi.server.bauart.infra.BauartController;
-import ch.ibw.appl.apiedi.server.behandlungen.infra.BehandlungController;
-import ch.ibw.appl.apiedi.server.behandlungen.service.ValidationError;
 import ch.ibw.appl.apiedi.server.hello.HelloController;
+import ch.ibw.appl.apiedi.server.leistung.infra.LeistungController;
+import ch.ibw.appl.apiedi.server.projekte.infra.ProjektController;
+import ch.ibw.appl.apiedi.server.shared.service.ValidationError;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.eclipse.jetty.http.HttpStatus;
@@ -29,11 +28,10 @@ public class HttpServer {
     server = Service.ignite();
     server.port(Integer.parseInt(httpPort));
 
-    new ch.ibw.appl.apiedi.server.angebot.infra.BauartController(isTest).createRoutes(server);
-    new BehandlungController(isTest).createRoutes(server);
-    new AusgabeController(isTest).createRoutes(server);
-    new HelloController(isTest).createRoutes(server);
     new BauartController(isTest).createRoutes(server);
+    new HelloController(isTest).createRoutes(server);
+    new ProjektController(isTest).createRoutes(server);
+    new LeistungController(isTest).createRoutes(server);
 
     server.options("/*",
             (request, response) -> {
@@ -57,6 +55,9 @@ public class HttpServer {
 
 
     server.before(((request, response) -> {
+      if(!request.headers("Accept").contains("application/json")){
+        server.halt(HttpStatus.NOT_ACCEPTABLE_406);
+      }
       response.header("Access-Control-Allow-Origin", "http://localhost:63343");
     }));
 

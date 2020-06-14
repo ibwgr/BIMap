@@ -19,7 +19,8 @@ public class BauartSQL2ORepository {
         if (isTest) {
             sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
             try (Connection conn = sql2o.open()) {
-                executeFile(conn, "C:\\Users\\mvink\\Documents\\Applikations-Entwicklung\\Privat\\A-PiediApp\\apiedi-java-server\\src\\main\\resources\\META-INF\\createtableAngebot.sql");
+                executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
+                executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
             }
         } else {
             sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
@@ -60,7 +61,7 @@ public class BauartSQL2ORepository {
     public Bauart get(int id) {
         List<Bauart> bauarten = all();
         for (Bauart bauart : bauarten) {
-            if (bauart.id == id) {
+            if (bauart.idbauart == id) {
                 return bauart;
             }
         }

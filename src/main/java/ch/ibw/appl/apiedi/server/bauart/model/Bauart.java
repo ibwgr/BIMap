@@ -7,24 +7,24 @@ import javax.persistence.Id;
 
 @Entity
 public class Bauart {
-    public String bauartdef;
+    public String bauart;
 
     @Id
     @GeneratedValue
 
-    public int id;
+    public int idbauart;
 
     public static Bauart create(String bauartdef) {
         Bauart bauart = new Bauart();
-        bauart.bauartdef = bauartdef;
+        bauart.bauart = bauartdef;
         return bauart;
     }
 
     @Override
     public String toString() {
         return "Bauart{" +
-                "bauartdef='" + bauartdef + '\'' +
-                ", id=" + id +
+                "bauartdef='" + bauart + '\'' +
+                ", id=" + idbauart +
                 '}';
     }
 }
