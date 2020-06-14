@@ -1,15 +1,16 @@
 package ch.ibw.appl.apiedi.server.projekte.service;
 
 
+import ch.ibw.appl.apiedi.server.projekte.infra.ProjektSQL2ORepository;
 import ch.ibw.appl.apiedi.server.projekte.model.ModelId;
 import ch.ibw.appl.apiedi.server.projekte.model.Projekt;
 
 import java.util.List;
 
 public class ProjektService {
-  private final ProjektRepository<Projekt> projektRepo;
+  private final ProjektSQL2ORepository projektRepo;
 
-  public ProjektService(ProjektRepository<Projekt> projektRepo) {
+  public ProjektService(ProjektSQL2ORepository projektRepo) {
     this.projektRepo = projektRepo;
   }
 

@@ -1,5 +1,6 @@
 package ch.ibw.appl.apiedi.server.bauart.service;
 
+import ch.ibw.appl.apiedi.server.bauart.infra.BauartSQL2ORepository;
 import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
 import ch.ibw.appl.apiedi.server.bauart.model.ModelId;
 
@@ -7,9 +8,9 @@ import ch.ibw.appl.apiedi.server.bauart.model.ModelId;
 import java.util.List;
 
 public class BauartService {
-  private final ch.ibw.appl.apiedi.server.bauart.service.BauartRepository<Bauart> bauartRepo;
+  private final BauartSQL2ORepository bauartRepo;
 
-  public BauartService(ch.ibw.appl.apiedi.server.bauart.service.BauartRepository<Bauart> bauartRepo) {
+  public BauartService (BauartSQL2ORepository bauartRepo) {
     this.bauartRepo = bauartRepo;
   }
 

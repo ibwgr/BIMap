@@ -15,15 +15,15 @@ public class Bauart {
     public int id;
 
     public static Bauart create(String bauartdef) {
-        Bauart bauart = new ch.ibw.appl.apiedi.server.bauart.model.Bauart();
+        Bauart bauart = new Bauart();
         bauart.bauartdef = bauartdef;
         return bauart;
     }
 
     @Override
     public String toString() {
-        return "Angebot{" +
-                "behart='" + bauartdef + '\'' +
+        return "Bauart{" +
+                "bauartdef='" + bauartdef + '\'' +
                 ", id=" + id +
                 '}';
     }

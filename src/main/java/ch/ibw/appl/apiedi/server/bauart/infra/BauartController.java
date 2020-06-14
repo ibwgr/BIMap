@@ -34,10 +34,10 @@ public class BauartController {
       return bauartService.getById(id);
     }, jsonSerializer::serialize);
 
-    server.post("/bauart", (request, response) -> {
-      Bauart bauart = jsonSerializer.deserialize(request.body(), new TypeReference<Bauart>() {});
-      response.status(HttpStatus.CREATED_201);
-      return bauartService.create(bauart);
-    }, jsonSerializer::serialize);
+//    server.post("/bauart", (request, response) -> {
+//      Bauart bauart = jsonSerializer.deserialize(request.body(), new TypeReference<Bauart>() {});
+//      response.status(HttpStatus.CREATED_201);
+//      return bauartService.create(bauart);
+//    }, jsonSerializer::serialize);
   }
 }

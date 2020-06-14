@@ -1,9 +1,7 @@
-package ch.ibw.appl.apiedi.server.projekte.infra;
+package ch.ibw.appl.apiedi.server.leistung.infra;
 
-import ch.ibw.appl.apiedi.server.projekte.model.ModelId;
-import ch.ibw.appl.apiedi.server.projekte.model.Projekt;
+import ch.ibw.appl.apiedi.server.leistung.model.Leistung;
 import org.sql2o.Connection;
-import org.sql2o.Query;
 import org.sql2o.Sql2o;
 
 import java.io.IOException;
@@ -11,11 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class ProjektSQL2ORepository {
+public class LeistungSQL2ORepository{
 
   private final Sql2o sql2o;
 
-  public ProjektSQL2ORepository(boolean isTest) {
+  public LeistungSQL2ORepository(boolean isTest) {
     if(isTest){
       sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "SAS", "sas123");
       try(Connection conn = sql2o.open()){
@@ -41,32 +39,33 @@ public class ProjektSQL2ORepository {
     }
   }
 
-  public List<Projekt> all() {
+  public List<Leistung> all() {
     try(Connection conn = sql2o.open()){
-      return conn.createQuery("select * from projekt").executeAndFetch(Projekt.class);
+      return conn.createQuery("select Leistung from leistung").executeAndFetch(Leistung.class);
     }
   }
 
-//  public ModelId add(Projekt projekt) {
+//  public ModelId add(Leistung leistungprojekt) {
 //    try(Connection conn = sql2o.open()){
-//      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(projekt);
+//      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(leistungprojekt);
 //      int newId = Integer.parseInt(preparedStatement.executeUpdate().getKey().toString());
 //      System.out.println(newId);
 //      return ModelId.create(newId);
 //    }
 //  }
 
-  public Projekt get(int id) {
-    List<Projekt> projekte = all();
-    for (Projekt projekt : projekte){
-      if (projekt.id == id) {
-        return projekt;
+  public Leistung get(int id) {
+    List<Leistung> leistungprojekte = all();
+    for (Leistung leistungprojekt : leistungprojekte){
+      if (leistungprojekt.id == id) {
+        return leistungprojekt;
       }
     }
     return null;
   }
 
-  public Projekt findByDescription(String description) {
+  public Leistung findByDescription(String description) {
     return null;
   }
+
 }

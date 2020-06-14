@@ -1,4 +1,4 @@
-package ch.ibw.appl.apiedi.server.realisierungsjahr.model;
+package ch.ibw.appl.apiedi.server.leistung.model;
 
 public class ModelId {
 

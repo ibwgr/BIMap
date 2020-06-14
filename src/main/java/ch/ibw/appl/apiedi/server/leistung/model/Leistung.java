@@ -1,22 +1,22 @@
-package ch.ibw.appl.apiedi.server.leistungprojekt.model;
+package ch.ibw.appl.apiedi.server.leistung.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Leistungprojekt {
+public class Leistung {
     public int leistungid;
-    public int projektid;
+    public int bauartid;
 
     @Id
     @GeneratedValue
     public Long id;
 
-    public static Leistungprojekt create(int leistungid, int projektid) {
-        Leistungprojekt lp = new Leistungprojekt();
+    public static Leistung create(int leistungid, int bauartid) {
+        Leistung lp = new Leistung();
         lp.leistungid = leistungid;
-        lp.projektid = projektid;
+        lp.bauartid = bauartid;
         return lp;
     }
 
@@ -24,7 +24,7 @@ public class Leistungprojekt {
     public String toString() {
         return "Leistungprojekt{" +
                 "leistungid='" + leistungid + '\'' +
-                ", projektid=" + projektid +
+                ", projektid=" + bauartid +
                 ", id=" + id +
                 '}';
     }
