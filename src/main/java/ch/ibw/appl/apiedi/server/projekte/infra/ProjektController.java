@@ -24,6 +24,8 @@ public class ProjektController {
             },
             jsonSerializer::serialize);
 
+            System.out.println(projektService.all());
+
 //    server.get("/todo/items", "text/csv",
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);

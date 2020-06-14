@@ -15,13 +15,13 @@ public class LeistungSQL2ORepository{
 
   public LeistungSQL2ORepository(boolean isTest) {
     if(isTest){
-      sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
       try(Connection conn = sql2o.open()){
         executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
         executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
       }
     }else{
-      sql2o = new Sql2o("jdbc:mysql://localhost:3306/apiedi", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
     }
   }
 
@@ -42,7 +42,7 @@ public class LeistungSQL2ORepository{
 
   public List<Leistung> all() {
     try(Connection conn = sql2o.open()){
-      return conn.createQuery("select Leistung from leistung").executeAndFetch(Leistung.class);
+      return conn.createQuery("select * from leistung").executeAndFetch(Leistung.class);
     }
   }
 
@@ -56,10 +56,10 @@ public class LeistungSQL2ORepository{
 //  }
 
   public Leistung get(int id) {
-    List<Leistung> leistungprojekte = all();
-    for (Leistung leistungprojekt : leistungprojekte){
-      if (leistungprojekt.id == id) {
-        return leistungprojekt;
+    List<Leistung> leistungen = all();
+    for (Leistung leistung : leistungen){
+      if (leistung.idleistung == id) {
+        return leistung;
       }
     }
     return null;
@@ -68,5 +68,4 @@ public class LeistungSQL2ORepository{
   public Leistung findByDescription(String description) {
     return null;
   }
-
 }
