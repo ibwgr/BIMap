@@ -1,30 +1,30 @@
-package ch.ibw.appl.apiedi.server.angebot.model;
+package ch.ibw.appl.apiedi.server.leistungprojekt.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Angebot {
-    public String behart;
-    public float betrag;
+public class Leistungprojekt {
+    public int leistungid;
+    public int projektid;
 
     @Id
     @GeneratedValue
     public Long id;
 
-    public static Angebot create(String behart, float betrag) {
-        Angebot angebot = new Angebot();
-        angebot.behart = behart;
-        angebot.betrag = betrag;
-        return angebot;
+    public static Leistungprojekt create(int leistungid, int projektid) {
+        Leistungprojekt lp = new Leistungprojekt();
+        lp.leistungid = leistungid;
+        lp.projektid = projektid;
+        return lp;
     }
 
     @Override
     public String toString() {
-        return "Angebot{" +
-                "behart='" + behart + '\'' +
-                ", betrag=" + betrag +
+        return "Leistungprojekt{" +
+                "leistungid='" + leistungid + '\'' +
+                ", projektid=" + projektid +
                 ", id=" + id +
                 '}';
     }

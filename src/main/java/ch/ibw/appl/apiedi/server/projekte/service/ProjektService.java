@@ -1,33 +1,27 @@
-package ch.ibw.appl.apiedi.server.angebot.service;
+package ch.ibw.appl.apiedi.server.projekte.service;
 
-import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
-import ch.ibw.appl.apiedi.server.behandlungen.service.ValidationError;
+
+import ch.ibw.appl.apiedi.server.projekte.model.ModelId;
+import ch.ibw.appl.apiedi.server.projekte.model.Projekt;
 
 import java.util.List;
 
-public class AngebotService {
-  private final AngebotRepository<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebotRepo;
+public class ProjektService {
+  private final ProjektRepository<Projekt> projektRepo;
 
-  public AngebotService(AngebotRepository<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebotRepo) {
-    this.angebotRepo = angebotRepo;
+  public ProjektService(ProjektRepository<Projekt> projektRepo) {
+    this.projektRepo = projektRepo;
   }
 
-  public List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> all() {
-    return angebotRepo.all();
+  public List<Projekt> all() {
+    return projektRepo.all();
   }
 
-  public ModelId create(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot) {
-    if(angebot.behart.isEmpty()){
-      throw new ValidationError("Behandlungs Art can not be empty");
-    }
-    if (angebot.betrag == 0) {
-      throw new ValidationError("Betrag can not be empty");
-    }
-
-    return angebotRepo.add(angebot);
+  public Projekt getById(int id) {
+    return projektRepo.get(id);
   }
 
-  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt getById(int id) {
-    return angebotRepo.get(id);
+  public ModelId create(Projekt projekt) {
+    return null;
   }
 }

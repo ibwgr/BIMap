@@ -1,6 +1,8 @@
-package ch.ibw.appl.apiedi.server.angebot.infra;
+package ch.ibw.appl.apiedi.server.projekte.infra;
 
-import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
+import ch.ibw.appl.apiedi.server.projekte.model.ModelId;
+import ch.ibw.appl.apiedi.server.projekte.model.Projekt;
+import ch.ibw.appl.apiedi.server.projekte.service.ProjektRepository;
 import org.sql2o.Connection;
 import org.sql2o.Query;
 import org.sql2o.Sql2o;
@@ -10,11 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class AngebotSQL2ORepository implements ch.ibw.appl.apiedi.server.angebot.service.BauartRepository<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> {
+public class ProjektSQL2ORepository implements ProjektRepository<Projekt> {
 
   private final Sql2o sql2o;
 
-  public AngebotSQL2ORepository(boolean isTest) {
+  public ProjektSQL2ORepository(boolean isTest) {
     if(isTest){
       sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "SAS", "sas123");
       try(Connection conn = sql2o.open()){
@@ -41,16 +43,16 @@ public class AngebotSQL2ORepository implements ch.ibw.appl.apiedi.server.angebot
   }
 
   @Override
-  public List<T> all() {
+  public List<Projekt> all() {
     try(Connection conn = sql2o.open()){
-      return conn.createQuery("select * from angebot").executeAndFetch(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt.class);
+      return conn.createQuery("select * from angebot").executeAndFetch(Projekt.class);
     }
   }
 
   @Override
-  public ModelId add(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot) {
+  public ch.ibw.appl.apiedi.server.bauart.model.ModelId add(Projekt projekt) {
     try(Connection conn = sql2o.open()){
-      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(angebot);
+      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(projekt);
       int newId = Integer.parseInt(preparedStatement.executeUpdate().getKey().toString());
       System.out.println(newId);
       return ModelId.create(newId);
@@ -58,19 +60,18 @@ public class AngebotSQL2ORepository implements ch.ibw.appl.apiedi.server.angebot
   }
 
   @Override
-  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt get(int id) {
-    List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebote = all();
-    for (ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot : angebote){
-      if (angebot.id == id) {
-        return angebot;
+  public Projekt get(int id) {
+    List<Projekt> projekte = all();
+    for (Projekt projekt : projekte){
+      if (projekt.id == id) {
+        return projekt;
       }
     }
     return null;
   }
 
   @Override
-  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt findByDescription(String description) {
+  public Projekt findByDescription(String description) {
     return null;
   }
-
 }

@@ -1,6 +1,8 @@
-package ch.ibw.appl.apiedi.server.angebot.infra;
+package ch.ibw.appl.apiedi.server.realisierungsjahr.infra;
 
-import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
+import ch.ibw.appl.apiedi.server.realisierungsjahr.model.ModelId;
+import ch.ibw.appl.apiedi.server.realisierungsjahr.model.Realisierungsjahr;
+import ch.ibw.appl.apiedi.server.realisierungsjahr.service.RealisierungsjahrRepository;
 import org.sql2o.Connection;
 import org.sql2o.Query;
 import org.sql2o.Sql2o;
@@ -10,11 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class AngebotSQL2ORepository implements ch.ibw.appl.apiedi.server.angebot.service.BauartRepository<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> {
+public class RealisierungsjahrSQL2ORepository implements RealisierungsjahrRepository<Realisierungsjahr> {
 
   private final Sql2o sql2o;
 
-  public AngebotSQL2ORepository(boolean isTest) {
+  public RealisierungsjahrSQL2ORepository(boolean isTest) {
     if(isTest){
       sql2o = new Sql2o("jdbc:hsqldb:mem:apiedi", "SAS", "sas123");
       try(Connection conn = sql2o.open()){
@@ -41,35 +43,34 @@ public class AngebotSQL2ORepository implements ch.ibw.appl.apiedi.server.angebot
   }
 
   @Override
-  public List<T> all() {
+  public List<Realisierungsjahr> all() {
     try(Connection conn = sql2o.open()){
-      return conn.createQuery("select * from angebot").executeAndFetch(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt.class);
+      return conn.createQuery("select * from realisierungsjahr").executeAndFetch(Realisierungsjahr.class);
     }
   }
 
   @Override
-  public ModelId add(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot) {
+  public ModelId add(Realisierungsjahr realisierungsjahr) {
     try(Connection conn = sql2o.open()){
-      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(angebot);
+      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(realisierungsjahr);
       int newId = Integer.parseInt(preparedStatement.executeUpdate().getKey().toString());
       System.out.println(newId);
       return ModelId.create(newId);
     }
   }
 
-  @Override
-  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt get(int id) {
-    List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebote = all();
-    for (ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot : angebote){
-      if (angebot.id == id) {
-        return angebot;
+  public Realisierungsjahr get(int id) {
+    List<Realisierungsjahr> realisierungsjahre = all();
+    for (Realisierungsjahr realisierungsjahr : realisierungsjahre){
+      if (realisierungsjahr.id == id) {
+        return realisierungsjahr;
       }
     }
     return null;
   }
 
   @Override
-  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt findByDescription(String description) {
+  public Realisierungsjahr findByDescription(String description) {
     return null;
   }
 

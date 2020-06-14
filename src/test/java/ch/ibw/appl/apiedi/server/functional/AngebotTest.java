@@ -1,6 +1,5 @@
 package ch.ibw.appl.apiedi.server.functional;
 
-import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
 import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
 import ch.ibw.appl.apiedi.server.functional.shared.FunctionalTest;
 import ch.ibw.appl.apiedi.server.shared.service.JSONSerializer;
@@ -35,7 +34,7 @@ public class AngebotTest extends FunctionalTest {
 
     String body = new String(response.body());
 
-    List<Angebot> angebote = new JSONSerializer().deserialize(body, new TypeReference<List<Angebot>>() {});
+    List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebote = new JSONSerializer().deserialize(body, new TypeReference<List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt>>() {});
     assertEquals(new Float(50), angebote.get(0).betrag, 0);
   }
 
@@ -48,7 +47,7 @@ public class AngebotTest extends FunctionalTest {
 
     String body = new String(response.body());
 
-    Angebot angebot = new JSONSerializer().deserialize(body, new TypeReference<Angebot>() {});
+    ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot = new JSONSerializer().deserialize(body, new TypeReference<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt>() {});
     assertEquals(new Float(85), angebot.betrag, 0);
   }
 
@@ -65,7 +64,7 @@ public class AngebotTest extends FunctionalTest {
 
   @Test
   public void create_angebot() {
-    Angebot angebot = Angebot.create("Extra", 110);
+    ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot = ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt.create("Extra", 110);
     HttpResponse response = executePost("/angebote", angebot);
 
     assertEquals(HttpStatus.CREATED_201, response.code());
@@ -82,13 +81,13 @@ public class AngebotTest extends FunctionalTest {
     assertEquals("application/json", response.headers().get("Content-Type").get(0));
 
     String body2 = new String(response2.body());
-    Angebot angebot2 = new JSONSerializer().deserialize(body2, new TypeReference<Angebot>() {});
+    ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot2 = new JSONSerializer().deserialize(body2, new TypeReference<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt>() {});
     assertEquals(new Float(110), angebot2.betrag, 0);
   }
 
   @Test
   public void create_angebot_validationFailed() {
-    Object angebot = Angebot.create("", 0);
+    Object angebot = ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt.create("", 0);
     HttpResponse response = executePost("/angebote", angebot);
 
     assertEquals(HttpStatus.UNPROCESSABLE_ENTITY_422, response.code());

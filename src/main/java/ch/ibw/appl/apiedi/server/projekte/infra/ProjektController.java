@@ -1,25 +1,26 @@
-package ch.ibw.appl.apiedi.server.angebot.infra;
+package ch.ibw.appl.apiedi.server.projekte.infra;
 
-import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
+import ch.ibw.appl.apiedi.server.projekte.model.Projekt;
+import ch.ibw.appl.apiedi.server.projekte.service.ProjektService;
 import ch.ibw.appl.apiedi.server.shared.service.JSONSerializer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Service;
 
-public class AngebotController {
-  private ch.ibw.appl.apiedi.server.angebot.service.LeistungprojektService angebotService;
+public class ProjektController {
+  private ProjektService projektService;
 
-  public AngebotController(Boolean isTest) {
-    angebotService = new ch.ibw.appl.apiedi.server.angebot.service.LeistungprojektService(new AngebotSQL2ORepository(isTest));
+  public ProjektController(Boolean isTest) {
+    projektService = new ProjektService(new ProjektSQL2ORepository(isTest));
   }
 
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/angebote", "application/json",
+    server.get("/projekt", "application/json",
             (request, response) -> {
               response.type("application/json");
-              return angebotService.all();
+              return projektService.all();
             },
             jsonSerializer::serialize);
 
@@ -29,13 +30,13 @@ public class AngebotController {
 
     server.get("/angebote/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
-      return angebotService.getById(id);
+      return projektService.getById(id);
     }, jsonSerializer::serialize);
 
     server.post("/angebote", (request, response) -> {
-      Angebot angebot = jsonSerializer.deserialize(request.body(), new TypeReference<Angebot>() {});
+      Projekt projekt = jsonSerializer.deserialize(request.body(), new TypeReference<Projekt>() {});
       response.status(HttpStatus.CREATED_201);
-      return angebotService.create(angebot);
+      return projektService.create(projekt);
     }, jsonSerializer::serialize);
   }
 }

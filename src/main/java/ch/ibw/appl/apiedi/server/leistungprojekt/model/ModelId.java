@@ -1,4 +1,4 @@
-package ch.ibw.appl.apiedi.server.bauherr.model;
+package ch.ibw.appl.apiedi.server.leistungprojekt.model;
 
 public class ModelId {
 

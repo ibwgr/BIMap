@@ -1,33 +1,27 @@
-package ch.ibw.appl.apiedi.server.angebot.service;
+package ch.ibw.appl.apiedi.server.realisierungsjahr.service;
 
-import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
-import ch.ibw.appl.apiedi.server.behandlungen.service.ValidationError;
+import ch.ibw.appl.apiedi.server.realisierungsjahr.infra.RealisierungsjahrSQL2ORepository;
+import ch.ibw.appl.apiedi.server.realisierungsjahr.model.ModelId;
+import ch.ibw.appl.apiedi.server.realisierungsjahr.model.Realisierungsjahr;
 
 import java.util.List;
 
-public class AngebotService {
-  private final AngebotRepository<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebotRepo;
+public class RealisierungsjahrService {
+  private final RealisierungsjahrRepository<Realisierungsjahr> realisierungsjahrRepo;
 
-  public AngebotService(AngebotRepository<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebotRepo) {
-    this.angebotRepo = angebotRepo;
+  public RealisierungsjahrService(RealisierungsjahrSQL2ORepository realisierungsjahrRepo) {
+    this.realisierungsjahrRepo = realisierungsjahrRepo;
   }
 
-  public List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> all() {
-    return angebotRepo.all();
+  public List<Realisierungsjahr> all() {
+    return realisierungsjahrRepo.all();
   }
 
-  public ModelId create(ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot) {
-    if(angebot.behart.isEmpty()){
-      throw new ValidationError("Behandlungs Art can not be empty");
-    }
-    if (angebot.betrag == 0) {
-      throw new ValidationError("Betrag can not be empty");
-    }
-
-    return angebotRepo.add(angebot);
+  public Realisierungsjahr getById(int id) {
+    return realisierungsjahrRepo.get(id);
   }
 
-  public ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt getById(int id) {
-    return angebotRepo.get(id);
+  public ModelId create(Realisierungsjahr realisierungsjahr) {
+    return null;
   }
 }

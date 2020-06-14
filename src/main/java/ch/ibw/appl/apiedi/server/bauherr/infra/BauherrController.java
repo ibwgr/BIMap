@@ -1,27 +1,26 @@
-package ch.ibw.appl.apiedi.server.bauart.infra;
+package ch.ibw.appl.apiedi.server.bauherr.infra;
 
-
-import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
-import ch.ibw.appl.apiedi.server.bauart.service.BauartService;
+import ch.ibw.appl.apiedi.server.bauherr.model.Bauherr;
+import ch.ibw.appl.apiedi.server.bauherr.service.BauherrService;
 import ch.ibw.appl.apiedi.server.shared.service.JSONSerializer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Service;
 
-public class BauartController {
-  private BauartService bauartService;
+public class BauherrController {
+  private BauherrService bauerrService;
 
-  public BauartController(Boolean isTest) {
-    bauartService = new BauartService(new BauartSQL2ORepository(isTest));
+  public BauherrController(Boolean isTest) {
+    bauerrService = new BauherrService(new BauherrSQL2ORepository(isTest));
   }
 
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/bauart", "application/json",
+    server.get("/bauerr", "application/json",
             (request, response) -> {
               response.type("application/json");
-              return bauartService.all();
+              return bauerrService.all();
             },
             jsonSerializer::serialize);
 
@@ -29,15 +28,15 @@ public class BauartController {
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);
 
-    server.get("/bauart", (request, response) -> {
+    server.get("/bauerr", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
-      return bauartService.getById(id);
+      return bauerrService.getById(id);
     }, jsonSerializer::serialize);
 
-    server.post("/bauart", (request, response) -> {
-      Bauart bauart = jsonSerializer.deserialize(request.body(), new TypeReference<Bauart>() {});
+    server.post("/bauerr", (request, response) -> {
+      Bauherr bauerr = jsonSerializer.deserialize(request.body(), new TypeReference<Bauherr>() {});
       response.status(HttpStatus.CREATED_201);
-      return bauartService.create(bauart);
+      return bauerrService.create(bauerr);
     }, jsonSerializer::serialize);
   }
 }

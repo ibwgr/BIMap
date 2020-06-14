@@ -1,34 +1,27 @@
-package ch.ibw.appl.apiedi.server.angebot.service;
+package ch.ibw.appl.apiedi.server.bauart.service;
 
-import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
-import ch.ibw.appl.apiedi.server.behandlungen.service.ValidationError;
-import ch.ibw.appl.apiedi.server.angebot.model.Angebot;
+import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
+import ch.ibw.appl.apiedi.server.bauart.model.ModelId;
+
 
 import java.util.List;
 
-public class AngebotService {
-  private final AngebotRepository<Angebot> angebotRepo;
+public class BauartService {
+  private final ch.ibw.appl.apiedi.server.bauart.service.BauartRepository<Bauart> bauartRepo;
 
-  public AngebotService(AngebotRepository<Angebot> angebotRepo) {
-    this.angebotRepo = angebotRepo;
+  public BauartService(ch.ibw.appl.apiedi.server.bauart.service.BauartRepository<Bauart> bauartRepo) {
+    this.bauartRepo = bauartRepo;
   }
 
-  public List<Angebot> all() {
-    return angebotRepo.all();
+  public List<Bauart> all() {
+    return bauartRepo.all();
   }
 
-  public ModelId create(Angebot angebot) {
-    if(angebot.behart.isEmpty()){
-      throw new ValidationError("Behandlungs Art can not be empty");
-    }
-    if (angebot.betrag == 0) {
-      throw new ValidationError("Betrag can not be empty");
-    }
-
-    return angebotRepo.add(angebot);
+  public Bauart getById(int id) {
+    return bauartRepo.get(id);
   }
 
-  public Angebot getById(int id) {
-    return angebotRepo.get(id);
+  public ModelId create(Bauart bauart) {
+    return null;
   }
 }

@@ -1,27 +1,26 @@
-package ch.ibw.appl.apiedi.server.bauart.service;
+package ch.ibw.appl.apiedi.server.bauherr.service;
 
-import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
 import ch.ibw.appl.apiedi.server.bauart.model.ModelId;
-
+import ch.ibw.appl.apiedi.server.bauherr.model.Bauherr;
 
 import java.util.List;
 
-public class BauartService {
-  private final BauartRepository<Bauart> bauartRepo;
+public class BauherrService {
+  private final BauherrRepository<Bauherr> bauerrRepo;
 
-  public BauartService(BauartRepository<Bauart> bauartRepo) {
-    this.bauartRepo = bauartRepo;
+  public BauherrService(BauherrRepository<Bauherr> bauerrRepo) {
+    this.bauerrRepo = bauerrRepo;
   }
 
-  public List<Bauart> all() {
-    return bauartRepo.all();
+  public List<Bauherr> all() {
+    return bauerrRepo.all();
   }
 
-  public Bauart getById(int id) {
-    return bauartRepo.get(id);
+  public Bauherr getById(int id) {
+    return bauerrRepo.get(id);
   }
 
-  public ModelId create(Bauart bauart) {
+  public ModelId create(Bauherr bauerr) {
     return null;
   }
 }

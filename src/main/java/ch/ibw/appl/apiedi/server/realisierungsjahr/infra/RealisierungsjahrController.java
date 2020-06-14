@@ -1,24 +1,26 @@
-package ch.ibw.appl.apiedi.server.angebot.infra;
+package ch.ibw.appl.apiedi.server.realisierungsjahr.infra;
 
+import ch.ibw.appl.apiedi.server.realisierungsjahr.model.Realisierungsjahr;
+import ch.ibw.appl.apiedi.server.realisierungsjahr.service.RealisierungsjahrService;
 import ch.ibw.appl.apiedi.server.shared.service.JSONSerializer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Service;
 
-public class AngebotController {
-  private ch.ibw.appl.apiedi.server.angebot.service.LeistungprojektService angebotService;
+public class RealisierungsjahrController {
+  private RealisierungsjahrService realisierungsjahrService;
 
-  public AngebotController(Boolean isTest) {
-    angebotService = new ch.ibw.appl.apiedi.server.angebot.service.LeistungprojektService(new AngebotSQL2ORepository(isTest));
+  public RealisierungsjahrController(Boolean isTest) {
+    realisierungsjahrService = new RealisierungsjahrService(new RealisierungsjahrSQL2ORepository(isTest));
   }
 
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/angebote", "application/json",
+    server.get("/realisierungsjahr", "application/json",
             (request, response) -> {
               response.type("application/json");
-              return angebotService.all();
+              return realisierungsjahrService.all();
             },
             jsonSerializer::serialize);
 
@@ -26,15 +28,15 @@ public class AngebotController {
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);
 
-    server.get("/angebote/:id", (request, response) -> {
+    server.get("/realisierungsjahr/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
-      return angebotService.getById(id);
+      return realisierungsjahrService.getById(id);
     }, jsonSerializer::serialize);
 
-    server.post("/angebote", (request, response) -> {
-      ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt angebot = jsonSerializer.deserialize(request.body(), new TypeReference<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt>() {});
+    server.post("/realisierungsjahr", (request, response) -> {
+      Realisierungsjahr realisierungsjahr = jsonSerializer.deserialize(request.body(), new TypeReference<Realisierungsjahr>() {});
       response.status(HttpStatus.CREATED_201);
-      return angebotService.create(angebot);
+      return realisierungsjahrService.create(realisierungsjahr);
     }, jsonSerializer::serialize);
   }
 }
