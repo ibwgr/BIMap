@@ -1,7 +1,6 @@
 package ch.ibw.appl.apiedi.server.shared.service;
 
 import ch.ibw.appl.apiedi.server.bauart.model.ModelId;
-import ch.ibw.appl.apiedi.server.behandlungen.model.ModelId;
 
 import java.util.List;
 

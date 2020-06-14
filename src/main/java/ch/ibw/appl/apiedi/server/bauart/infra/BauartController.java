@@ -18,7 +18,7 @@ public class BauartController {
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/bauart", "application/json",
+    server.get("/bauarten", "application/json",
             (request, response) -> {
               response.type("application/json");
               return bauartService.all();
