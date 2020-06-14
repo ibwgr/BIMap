@@ -21,7 +21,7 @@ public class BauartTest extends FunctionalTest {
     HttpResponse response = httpClient.execute(method);
 
 //    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
-    assertEquals(HttpStatus.INTERNAL_SERVER_ERROR_500, response.code());
+    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
   }
 
 //  @Test
