@@ -24,16 +24,18 @@ public class LeistungController {
             },
             jsonSerializer::serialize);
 
+            System.out.println(leistungService.all());
+
 //    server.get("/todo/items", "text/csv",
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);
 
-    server.get("/angebote/:id", (request, response) -> {
+    server.get("/leistung/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
       return leistungService.getById(id);
     }, jsonSerializer::serialize);
 
-    server.post("/angebote", (request, response) -> {
+    server.post("/leistung", (request, response) -> {
       Leistung leistungprojekt = jsonSerializer.deserialize(request.body(), new TypeReference<Leistung>() {});
       response.status(HttpStatus.CREATED_201);
       return leistungService.create(leistungprojekt);

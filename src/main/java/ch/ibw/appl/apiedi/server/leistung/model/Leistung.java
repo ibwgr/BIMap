@@ -6,23 +6,23 @@ import javax.persistence.Id;
 
 @Entity
 public class Leistung {
-    public int idleistung;
+    public String leistungen;
 
     @Id
     @GeneratedValue
-    public Long id;
+    public int idleistung;
 
-    public static Leistung create(int leistungid, int bauartid) {
+    public static Leistung create(String leistungdef) {
         Leistung lp = new Leistung();
-        lp.idleistung = leistungid;
+        lp.leistungen = leistungdef;
         return lp;
     }
 
     @Override
     public String toString() {
-        return "Leistungprojekt{" +
-                "leistungid='" + idleistung + '\'' +
-                ", id=" + id +
+        return "Leistung{" +
+                "leistung='" + leistungen + '\'' +
+                ", id=" + idleistung +
                 '}';
     }
 }
