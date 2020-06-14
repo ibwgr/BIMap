@@ -6,8 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Leistung {
-    public int leistungid;
-    public int bauartid;
+    public int idleistung;
 
     @Id
     @GeneratedValue
@@ -15,16 +14,14 @@ public class Leistung {
 
     public static Leistung create(int leistungid, int bauartid) {
         Leistung lp = new Leistung();
-        lp.leistungid = leistungid;
-        lp.bauartid = bauartid;
+        lp.idleistung = leistungid;
         return lp;
     }
 
     @Override
     public String toString() {
         return "Leistungprojekt{" +
-                "leistungid='" + leistungid + '\'' +
-                ", projektid=" + bauartid +
+                "leistungid='" + idleistung + '\'' +
                 ", id=" + id +
                 '}';
     }

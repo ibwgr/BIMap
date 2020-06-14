@@ -17,7 +17,7 @@ public class BauartTest extends FunctionalTest {
 
   @Test
   public void notAcceptable() throws HttpClientException {
-    GetMethod method = httpClient.get("/bauarten", false);
+    GetMethod method = httpClient.get("/bauart", false);
     HttpResponse response = httpClient.execute(method);
 
 //    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
