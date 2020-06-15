@@ -19,12 +19,30 @@ public class BauartTest extends FunctionalTest {
   public void notAcceptable() throws HttpClientException {
     GetMethod method = httpClient.get("/bauart", false);
     HttpResponse response = httpClient.execute(method);
+    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
+  }
 
-//    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
+  @Test
+  public void notAcceptable2() throws HttpClientException {
+    GetMethod method = httpClient.get("/bauarten", false);
+    HttpResponse response = httpClient.execute(method);
     assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
   }
 
 //  @Test
+//  public void get_bauart() {
+//    HttpResponse response = executeGet("/bauart");
+//     assertEquals(HttpStatus.OK_200, response.code());
+//    assertEquals("application/json", response.headers().get("Content-Type").get(0));
+//
+//    String body = new String(response.body());
+//
+//    List<ch.ibw.appl.apiedi.server.bauart.model.Bauart> bauart = new JSONSerializer().deserialize(body, new TypeReference<List<ch.ibw.appl.apiedi.server.bauart.model.Bauart>>() {});
+//    assertEquals(new Float(50), bauart.get(0).idbauart, 0);
+//  }
+
+
+  //  @Test
 //  public void get_angebote() {
 //    HttpResponse response = executeGet("/angebote");
 ////    HttpResponse response = executeGet("/todo/items", "text/csv");
