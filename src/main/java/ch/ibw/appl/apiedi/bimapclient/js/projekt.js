@@ -1,4 +1,4 @@
-export class projekt {
+export class Projekt {
     constructor(id, projektnummer, projektname, ort, bauart, projektverfasser, leistungen, koordX, koordY, realisierungsjahr, bausumme, bauherr) {
         this.id = id;
         this.projektnummer = projektnummer;
@@ -7,10 +7,16 @@ export class projekt {
         this.bauart = bauart;
         this.projektverfasser = projektverfasser;
         this.leistungen = leistungen;
-        this.koordX = koordX;
-        this.koordY = koordY;
+        this.koordx = koordX;
+        this.koordy = koordY;
         this.realisierungsjahr = realisierungsjahr;
         this.bausumme = bausumme;
         this.bauherr = bauherr;
     }
 }
+
+Projekt.fromJson = function (json){
+    var obj = JSON.parse (json);
+    return new Book (obj.idprojekt, obj.projektnummer, obj.projektname, obj.ort, obj.bauart,
+        obj.projektverfasser, obj. leistungen, obj.koordx, ob.koordy, obj.realisierungsjahr, obj.bausumme, obj.bauherr);
+};
