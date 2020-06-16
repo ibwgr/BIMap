@@ -40,11 +40,6 @@ public class ProjektSQL2ORepository {
     }
   }
 
-//  String select = "SELECT projekt.idprojekt, projekt.projektnummer, projekt.projektname, ort.ort, ort.plz, projekt.koordx, projekt.koordy, projekt.realisierungsjahr, projekt.bausumme, bauherr.bauherr " +
-//          "FROM bimap.projekt " +
-//          "INNER JOIN bimap.ort ON projekt.ortid=ort.idort " +
-//          "INNER JOIN bimap.bauherr ON projekt.bauherrid=bauherr.idbauherr";
-
   public List<Projekt> all() {
     try(Connection conn = sql2o.open()){
       List<Projekt> projekts = conn.createQuery("SELECT * FROM projekt").executeAndFetch(Projekt.class);
