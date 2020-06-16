@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <java.version>8</java.version>
-        <mainClass>ch.ibw.appl.apiedi.server.Main</mainClass>
+        <mainClass>ch.ibw.appl.bimap.server.Main</mainClass>
     </properties>
 
     <build>
