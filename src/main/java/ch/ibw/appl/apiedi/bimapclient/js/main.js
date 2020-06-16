@@ -32,18 +32,18 @@ map.addLayer(landeskarte);
 //map.addLayer(landesgrenze);
 
 // Zoom on the position
+// var position = [2709136, 1270186];
 // map.getView().setCenter(position);
 // map.getView().setResolution(100);
 
-// var position = [2709136, 1270186];
+
 
 let markers = Controller.getAllProjektData() //holt die projekte, umschreiben bei fertigen Web-Service
-markers.then(function(value) {
+markers.then(function (value) {
     for (let item of value) {
         createVectorLayer(item)
     }
 })
-
 
 
 // Create the layer with the icon
@@ -84,20 +84,19 @@ var overlay = new ol.Overlay({
 });
 map.addOverlay(overlay);
 
-closer.onclick = function() {
+closer.onclick = function () {
     overlay.setPosition(undefined);
     closer.blur();
     return false;
 };
 
-
 // Add the function to open the popup when you click on the marker
 map.on('singleclick', function (event) {
-    var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
-        if (map.hasFeatureAtPixel(event.pixel) === true) {
+    if (map.hasFeatureAtPixel(event.pixel) === true) {
+        var feature = map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
             let projektId = feature.getId();
             let data = Controller.getProjektDataById(projektId)
-            data.then(function(projekt) {
+            data.then(function (projekt) {
                 let projektinfo =
                     "<b>Projektinfo</b>" +
                     "<br/>Projektname: " + projekt.projektname +
@@ -110,10 +109,9 @@ map.on('singleclick', function (event) {
             })
             var coordinate = event.coordinate;
             overlay.setPosition(coordinate);
-        } else {
-            overlay.setPosition(undefined);
-            closer.blur();
-        }
-    });
-
+        });
+    } else {
+        overlay.setPosition(undefined);
+        closer.blur();
+    }
 })
