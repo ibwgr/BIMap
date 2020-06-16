@@ -20,6 +20,7 @@ function postResource(ressource) {
     let angebotid = document.getElementById("angebotid").value
     let anzahl = document.getElementById("anzahl").value
 
+
     console.log(date + " " + angebotid + anzahl)
     let url = "http://localhost:4567/" + ressource
     fetch(url, {
