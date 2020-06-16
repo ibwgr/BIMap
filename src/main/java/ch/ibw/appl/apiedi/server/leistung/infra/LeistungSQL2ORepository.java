@@ -21,7 +21,7 @@ public class LeistungSQL2ORepository{
         executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
       }
     }else{
-      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "root", "");
     }
   }
 

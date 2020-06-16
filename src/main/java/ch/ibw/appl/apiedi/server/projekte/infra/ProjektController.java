@@ -17,8 +17,7 @@ public class ProjektController {
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/projekte", "application/json",
-            (request, response) -> {
+    server.get("/projekte", (request, response) -> {
               response.type("application/json");
               return projektService.all();
             },
@@ -26,14 +25,10 @@ public class ProjektController {
 
             System.out.println(projektService.all());
 
-//    server.get("/todo/items", "text/csv",
-//            (request, response) ->  todoItemService.all(),
-//            model -> null/*make csv*/);
-
-//    server.get("/angebote/:id", (request, response) -> {
-//      int id = Integer.parseInt(request.params("id"));
-//      return projektService.getById(id);
-//    }, jsonSerializer::serialize);
+    server.get("/projekte/:id", (request, response) -> {
+      int id = Integer.parseInt(request.params("id"));
+      return projektService.getById(id);
+    }, jsonSerializer::serialize);
 //
 //    server.post("/angebote", (request, response) -> {
 //      Projekt projekt = jsonSerializer.deserialize(request.body(), new TypeReference<Projekt>() {});

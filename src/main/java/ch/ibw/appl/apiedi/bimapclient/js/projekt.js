@@ -1,4 +1,4 @@
-export default class Projekt {
+export class Projekt {
     constructor(obj) {
         Object.assign(this, obj)
     }

@@ -6,9 +6,17 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<div type="button" onclick="$('.popup').hide()"<span aria-hidden="true"></span></div>
+
+
 <div id="map" class="map"></div>
-<script type="module" src="js/main.js" defer></script>
-<script src="//api3.geo.admin.ch/loader.js?version=4.4.2" type="text/javascript"></script>
+
+<div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+</div>
+
+
+<script type="module" src="js/main.js"></script>
+<script src="//api3.geo.admin.ch/loader.js?version=4.4.2&ignore_polyfill=true" type="text/javascript"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class ProjektSQL2ORepository {
         executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
       }
     }else{
-      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "root", "");
     }
   }
 
@@ -48,19 +48,11 @@ public class ProjektSQL2ORepository {
     }
   }
 
-//  public ModelId add(Projekt projekt) {
-//    try(Connection conn = sql2o.open()){
-//      Query preparedStatement = conn.createQuery("insert into angebot (behart, betrag) values (:behart, :betrag)", true).bind(projekt);
-//      int newId = Integer.parseInt(preparedStatement.executeUpdate().getKey().toString());
-//      System.out.println(newId);
-//      return ModelId.create(newId);
-//    }
-//  }
 
   public Projekt get(int id) {
     List<Projekt> projekte = all();
     for (Projekt projekt : projekte){
-      if (projekt.id == id) {
+      if (projekt.idprojekt == id) {
         return projekt;
       }
     }
