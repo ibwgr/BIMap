@@ -24,7 +24,6 @@ public class LeistungController {
             },
             jsonSerializer::serialize);
 
-            System.out.println(leistungService.all());
 
 //    server.get("/todo/items", "text/csv",
 //            (request, response) ->  todoItemService.all(),

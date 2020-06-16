@@ -25,8 +25,6 @@ public class BauartController {
             },
             jsonSerializer::serialize);
 
-            System.out.println(bauartService.all());
-
 //    server.get("/todo/items", "text/csv",
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);

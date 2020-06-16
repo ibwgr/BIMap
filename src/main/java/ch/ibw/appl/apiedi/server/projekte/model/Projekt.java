@@ -11,11 +11,18 @@ public class Projekt {
     public int projektnummer;
     public String projektname;
     public int ortid;
+    public int plz;
+    public String ort;
     public int koordx;
     public int koordy;
     public int realisierungsjahr;
     public float bausumme;
     public int bauherrid;
+    public String bauherr;
+    public String bauart;
+    public String projektverfasser;
+    public String leistungen;
+
 
 
     @Id
@@ -39,16 +46,19 @@ public class Projekt {
     @Override
     public String toString() {
         return "Projekt{" +
-                "idprojekt='" + idprojekt + '\'' +
-                "projektname='" + projektname + '\'' +
-                "projektnummer='" + projektnummer + '\'' +
-                "ortid='" + ortid + '\'' +
-                "koordx='" + koordx + '\'' +
-                "koordy='" + koordy + '\'' +
-                "realisierungsjahr='" + realisierungsjahr + '\'' +
-                "bausumme='" + bausumme + '\'' +
-                ", bauherrid=" + bauherrid +
-                ", id=" + id +
+                "idprojekt=" + idprojekt +
+                ", projektnummer=" + projektnummer +
+                ", projektname='" + projektname + '\'' +
+                ", plz=" + plz +
+                ", ort='" + ort + '\'' +
+                ", koordx=" + koordx +
+                ", koordy=" + koordy +
+                ", realisierungsjahr=" + realisierungsjahr +
+                ", bausumme=" + bausumme +
+                ", bauherr='" + bauherr + '\'' +
+                ", bauart='" + bauart + '\'' +
+                ", projektverfasser='" + projektverfasser + '\'' +
+                ", leistungen='" + leistungen + '\'' +
                 '}';
     }
 }
