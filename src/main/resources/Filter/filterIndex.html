@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="filterStyle.css">
+
+
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <h2>Filter</h2>
+    <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+
+    <div class="custom-select">
+        <select>
+            <option value="0">Bauherr:</option>
+            <option value="1">Meier</option>
+            <option value="2">Mustermann</option>
+            <option value="3">Firma 1</option>
+            <option value="4">Firma 2</option>
+            <option value="5">Firma 3</option>
+            <option value="6">Firma 4</option>
+            <option value="7">Firma 5</option>
+            <option value="8">Firma 6</option>
+            <option value="9">Firma 7</option>
+        </select>
+    </div>
+
+    <div class="custom-select">
+        <select>
+            <option value="0">Bauart:</option>
+            <option value="1">Einfamilienhaus</option>
+            <option value="2">Mehrfamilienhaus</option>
+            <option value="3">Sanierung</option>
+            <option value="4">Öffentlicherbau</option>
+        </select>
+    </div>
+
+    <div class="custom-select">
+        <select>
+            <option value="0">Realisierungsjahr:</option>
+            <option value="1">2020</option>
+            <option value="2">2019</option>
+            <option value="3">2018</option>
+            <option value="4">2017</option>
+            <option value="5">2016</option>
+            <option value="6">2015</option>
+        </select>
+    </div>
+
+        <button class="button button1">Anzeigen</button>
+
+</div>
+
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<script src="filter.js"></script>
+</body>
+</html>
