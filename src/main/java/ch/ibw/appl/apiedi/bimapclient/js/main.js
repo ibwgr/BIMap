@@ -99,11 +99,16 @@ map.on('singleclick', function (event) {
             data.then(function (projekt) {
                 let projektinfo =
                     "<b>Projektinfo</b>" +
+                    "<br/>Projektnummer: " + projekt.projektnummer +
                     "<br/>Projektname: " + projekt.projektname +
-                    "<br/>Parzellennummer: " + projekt.projektnummer +
-                    "<br />Ort: " + projekt.ortid +
-                    "<br />PLZ: 7001" +
-                    "<br />Strasse: Musterweg 8"
+                    "<br/>Ort: " + projekt.ort +
+                    "<br/>PLZ: " + projekt.plz +
+                    "<br/>Realisierung: " + projekt.realisierungsjahr +
+                    "<br/>Bauherr: " +projekt.bauherr +
+                    "<br/>Bauart: " + projekt.bauart +
+                    "<br/>Projektverfasser: " + projekt.projektverfasser +
+                    "<br/>Leistungen: " + projekt.leistungen +
+                    "<br/>Bausumme: " + projekt.bausumme
 
                 content.innerHTML = projektinfo;
             })
