@@ -31,7 +31,7 @@ public class BauartController {
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);
 
-    server.get("/bauart", (request, response) -> {
+    server.get("/bauarten", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
       return bauartService.getById(id);
     }, jsonSerializer::serialize);

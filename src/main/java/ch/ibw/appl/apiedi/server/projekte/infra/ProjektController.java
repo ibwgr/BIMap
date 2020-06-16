@@ -17,7 +17,7 @@ public class ProjektController {
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/projekt", "application/json",
+    server.get("/projekte", "application/json",
             (request, response) -> {
               response.type("application/json");
               return projektService.all();
@@ -30,15 +30,15 @@ public class ProjektController {
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);
 
-    server.get("/angebote/:id", (request, response) -> {
-      int id = Integer.parseInt(request.params("id"));
-      return projektService.getById(id);
-    }, jsonSerializer::serialize);
-
-    server.post("/angebote", (request, response) -> {
-      Projekt projekt = jsonSerializer.deserialize(request.body(), new TypeReference<Projekt>() {});
-      response.status(HttpStatus.CREATED_201);
-      return projektService.create(projekt);
-    }, jsonSerializer::serialize);
+//    server.get("/angebote/:id", (request, response) -> {
+//      int id = Integer.parseInt(request.params("id"));
+//      return projektService.getById(id);
+//    }, jsonSerializer::serialize);
+//
+//    server.post("/angebote", (request, response) -> {
+//      Projekt projekt = jsonSerializer.deserialize(request.body(), new TypeReference<Projekt>() {});
+//      response.status(HttpStatus.CREATED_201);
+//      return projektService.create(projekt);
+//    }, jsonSerializer::serialize);
   }
 }

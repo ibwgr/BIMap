@@ -1,5 +1,6 @@
 package ch.ibw.appl.apiedi.server.functional;
 
+import ch.ibw.appl.apiedi.server.bauart.model.Bauart;
 import ch.ibw.appl.apiedi.server.functional.shared.FunctionalTest;
 import ch.ibw.appl.apiedi.server.shared.service.JSONSerializer;
 import com.despegar.http.client.GetMethod;
@@ -19,25 +20,28 @@ public class BauartTest extends FunctionalTest {
   public void notAcceptable() throws HttpClientException {
     GetMethod method = httpClient.get("/bauart", false);
     HttpResponse response = httpClient.execute(method);
+    String body = new String(response.body());
+    System.out.println(body);
 
 //    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
     assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
   }
 
-//  @Test
-//  public void get_angebote() {
-//    HttpResponse response = executeGet("/angebote");
-////    HttpResponse response = executeGet("/todo/items", "text/csv");
-//
-//    assertEquals(HttpStatus.OK_200, response.code());
-//    assertEquals("application/json", response.headers().get("Content-Type").get(0));
-//
-//    String body = new String(response.body());
-//
-//    List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt> angebote = new JSONSerializer().deserialize(body, new TypeReference<List<ch.ibw.appl.apiedi.server.angebot.model.Leistungprojekt>>() {});
-//    assertEquals(new Float(50), angebote.get(0).betrag, 0);
-//  }
-//
+  @Test
+  public void get_angebote() {
+    HttpResponse response = executeGet("/projekte");
+//    HttpResponse response = executeGet("/todo/items", "text/csv");
+
+    assertEquals(HttpStatus.OK_200, response.code());
+    assertEquals("application/json", response.headers().get("Content-Type").get(0));
+
+    String body = new String(response.body());
+    System.out.println(body);
+
+    List<Bauart> bauarten = new JSONSerializer().deserialize(body, new TypeReference<List<Bauart>>() {});
+    //assertEquals(new Float(50), bauarten.get(0).betrag, 0);
+  }
+
 //  @Test
 //  public void get_byId() {
 //    HttpResponse response = executeGet("/angebote/2");
