@@ -15,8 +15,13 @@ public class ProjektController {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
     server.get("/projekte", (request, response) -> {
+                String bauherr = request.queryParamOrDefault("bauherr", "");
+                String bauart = request.queryParamOrDefault("bauart", "");
+                int realisierungsjahr = Integer.parseInt(request.queryParamOrDefault("realisiserungsjahr", "0"));
+
               response.type("application/json");
-              return projektService.all();
+
+              return projektService.getByFilter(bauherr, bauart, realisierungsjahr);
             },
             jsonSerializer::serialize);
 

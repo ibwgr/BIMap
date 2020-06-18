@@ -7,6 +7,7 @@ import org.sql2o.Sql2o;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjektSQL2ORepository {
@@ -98,7 +99,14 @@ public class ProjektSQL2ORepository {
     return null;
   }
 
-  public Projekt findByDescription(String description) {
-    return null;
+  public List<Projekt> getByFilter(String bauherr, String bauart, int realisierungsjahr) {
+    List<Projekt> projekte = all();
+    List<Projekt> filterdProjekte = new ArrayList<>();
+    for (Projekt projekt : projekte){
+      if (projekt.bauherr.contains(bauherr) && projekt.bauart.contains(bauart) && projekt.realisierungsjahr > realisierungsjahr) {
+        filterdProjekte.add(projekt);
+      }
+    }
+    return filterdProjekte;
   }
 }

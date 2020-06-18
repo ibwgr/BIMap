@@ -30,3 +30,14 @@ export async function getProjektDataById(projektId) {
     return await project;
 }
 
+export async function getProjektByFilter(bauherr, bauart, realisierungsjahr) {
+    let projects =[];
+    let ReqURL = "http://localhost:2567/projekte" + "?bauherr=" + bauherr + "&bauart=" + bauart + "&realisierungsjahr=" + realisierungsjahr
+    let response = await fetch(ReqURL)
+    let data = await response.json();
+    for (let item of data) {
+        let project = new Projekt(item)
+        projects.push(project)
+    }
+    return projects;
+}
