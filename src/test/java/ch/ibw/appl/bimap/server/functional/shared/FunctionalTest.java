@@ -16,7 +16,7 @@ public class FunctionalTest {
 
     @Override
     public void init() {
-      httpServer = new HttpServer("2567", true);
+      httpServer = new HttpServer("4567", true);
       httpServer.start();
     }
 

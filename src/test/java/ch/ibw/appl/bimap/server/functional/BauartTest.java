@@ -18,8 +18,8 @@ public class BauartTest extends FunctionalTest {
 
   @Test
   public void notAcceptable() throws HttpClientException {
-    GetMethod method = httpClient.get("/bauart", false);
-    HttpResponse response = httpClient.execute(method);
+    //GetMethod method = httpClient.get("/bauarten", false);
+    HttpResponse response = executeGet("/projekte");
     String body = new String(response.body());
     System.out.println(body);
 
@@ -29,7 +29,7 @@ public class BauartTest extends FunctionalTest {
 
   @Test
   public void get_angebote() {
-    HttpResponse response = executeGet("/projekte");
+    HttpResponse response = executeGet("/bauarten");
 //    HttpResponse response = executeGet("/todo/items", "text/csv");
 
     assertEquals(HttpStatus.OK_200, response.code());

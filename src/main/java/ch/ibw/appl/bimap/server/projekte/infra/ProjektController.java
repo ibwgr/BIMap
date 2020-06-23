@@ -19,7 +19,9 @@ public class ProjektController {
                 String bauart = request.queryParamOrDefault("bauart", "");
                 int realisierungsjahr = Integer.parseInt(request.queryParamOrDefault("realisiserungsjahr", "0"));
 
-              response.type("application/json");
+                if (bauherr == "" && bauart == "" && realisierungsjahr == 0) {
+                    return projektService.all();
+                }
 
               return projektService.getByFilter(bauherr, bauart, realisierungsjahr);
             },
