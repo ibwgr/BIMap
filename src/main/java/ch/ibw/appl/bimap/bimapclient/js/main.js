@@ -1,10 +1,13 @@
 import * as Controller from "./controller.js";
 
-Controller.getProjektByFilter("", "Strasse").then(function (value) {
-    for (let item of value) {
-        console.log(item)
-    }
-})
+// Controller.getProjektByFilter("", "Strasse").then(function (value) {
+//     for (let item of value) {
+//         console.log(item)
+//     }
+// })
+
+//Controller.getAllBauherrenData()
+//Controller.getAllBauartenData()
 
 // Create a GeoAdmin Map
 var map = new ga.Map({

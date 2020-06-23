@@ -17,7 +17,8 @@ public class BauartController {
 
     server.get("/bauarten", "application/json",
             (request, response) -> {
-              response.type("application/json");
+                System.out.println("whatsp");
+                response.type("application/json");
               return bauartService.all();
             },
             jsonSerializer::serialize);
@@ -27,6 +28,7 @@ public class BauartController {
 //            model -> null/*make csv*/);
 
     server.get("/bauarten", (request, response) -> {
+        response.type("application/json");
       int id = Integer.parseInt(request.params("id"));
       return bauartService.getById(id);
     }, jsonSerializer::serialize);

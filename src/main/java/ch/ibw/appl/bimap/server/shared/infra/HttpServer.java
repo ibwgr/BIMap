@@ -11,8 +11,6 @@ import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.LoggerFactory;
 import spark.Service;
 
-import static spark.Spark.options;
-
 public class HttpServer {
 
   private final String httpPort;
@@ -33,9 +31,22 @@ public class HttpServer {
     new ProjektController(isTest).createRoutes(server);
     new LeistungController(isTest).createRoutes(server);
 
+    server.before(((request, response) -> {
+      // exclude /hello (and CORS OPTIONS request) from requiring to accept application/json
+      final boolean isCorsPreflight = request.requestMethod().equalsIgnoreCase("options");
+      final boolean isHello = request.pathInfo().equalsIgnoreCase("/hello");
+      if(!isHello && !isCorsPreflight){
+        final boolean clientWantsJson = request.headers("Accept").contains("application/json");
+        if(!clientWantsJson){
+          server.halt(HttpStatus.NOT_ACCEPTABLE_406);
+        }
+      }
+    }));
+
+    server.before((request,response) -> response.header("Access-Control-Allow-Origin", "*/*"));
+
     server.options("/*",
             (request, response) -> {
-
               String accessControlRequestHeaders = request
                       .headers("Access-Control-Request-Headers");
               if (accessControlRequestHeaders != null) {
@@ -53,10 +64,6 @@ public class HttpServer {
               return "OK";
             });
 
-
-    server.before(((request, response) -> {
-      response.header("Access-Control-Allow-Origin", "*");
-    }));
 
     server.afterAfter(((request, response) -> response.type("application/json")));
 

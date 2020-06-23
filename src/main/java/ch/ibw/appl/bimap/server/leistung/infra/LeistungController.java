@@ -17,7 +17,7 @@ public class LeistungController {
   public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/leistung", "application/json",
+    server.get("/leistungen",
             (request, response) -> {
               response.type("application/json");
               return leistungService.all();
@@ -29,12 +29,12 @@ public class LeistungController {
 //            (request, response) ->  todoItemService.all(),
 //            model -> null/*make csv*/);
 
-    server.get("/leistung/:id", (request, response) -> {
+    server.get("/leistungen/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
       return leistungService.getById(id);
     }, jsonSerializer::serialize);
 
-    server.post("/leistung", (request, response) -> {
+    server.post("/leistungen", (request, response) -> {
       Leistung leistungprojekt = jsonSerializer.deserialize(request.body(), new TypeReference<Leistung>() {});
       response.status(HttpStatus.CREATED_201);
       return leistungService.create(leistungprojekt);

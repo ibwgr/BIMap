@@ -7,6 +7,7 @@ import org.sql2o.Sql2o;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ProjektSQL2ORepository {
 
   public ProjektSQL2ORepository(boolean isTest) {
     if(isTest){
-      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "root", "");
       try(Connection conn = sql2o.open()){
         executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
         executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
@@ -82,7 +83,7 @@ public class ProjektSQL2ORepository {
             leistungString += leistung + " ";
           }
         }
-        projekt.leistungen = pvString;
+        projekt.leistungen = leistungString;
       }
       return projekts;
     }
@@ -90,13 +91,13 @@ public class ProjektSQL2ORepository {
 
 
   public Projekt get(int id) {
-    List<Projekt> projekte = all();
-    for (Projekt projekt : projekte){
-      if (projekt.idprojekt == id) {
-        return projekt;
+    Projekt projekt = new Projekt();
+    for (Projekt pro : all()){
+      if (pro.idprojekt == id) {
+        projekt = pro;
       }
     }
-    return null;
+    return projekt;
   }
 
   public List<Projekt> getByFilter(String bauherr, String bauart, int realisierungsjahr) {

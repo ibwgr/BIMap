@@ -2,6 +2,7 @@ package ch.ibw.appl.bimap.server.functional;
 
 import ch.ibw.appl.bimap.server.bauart.model.Bauart;
 import ch.ibw.appl.bimap.server.functional.shared.FunctionalTest;
+import ch.ibw.appl.bimap.server.projekte.model.Projekt;
 import ch.ibw.appl.bimap.server.shared.service.JSONSerializer;
 import com.despegar.http.client.GetMethod;
 import com.despegar.http.client.HttpClientException;
@@ -18,16 +19,22 @@ public class BauartTest extends FunctionalTest {
 
   @Test
   public void notAcceptable() throws HttpClientException {
+<<<<<<< Updated upstream
     //GetMethod method = httpClient.get("/bauarten", false);
     HttpResponse response = executeGet("/projekte");
+=======
+    GetMethod method = httpClient.get("/bauarten", false);
+    HttpResponse response = httpClient.execute(method);
+>>>>>>> Stashed changes
     String body = new String(response.body());
-    System.out.println(body);
+    System.out.println(response);
 
 //    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
     assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
   }
 
   @Test
+<<<<<<< Updated upstream
   public void get_angebote() {
     HttpResponse response = executeGet("/bauarten");
 //    HttpResponse response = executeGet("/todo/items", "text/csv");
@@ -35,11 +42,15 @@ public class BauartTest extends FunctionalTest {
     assertEquals(HttpStatus.OK_200, response.code());
     assertEquals("application/json", response.headers().get("Content-Type").get(0));
 
+=======
+  public void get_bauarten() throws HttpClientException {
+    HttpResponse response = executeGet("/bauarten");
+>>>>>>> Stashed changes
     String body = new String(response.body());
-    System.out.println(body);
+    System.out.println(response);
 
-    List<Bauart> bauarten = new JSONSerializer().deserialize(body, new TypeReference<List<Bauart>>() {});
-    //assertEquals(new Float(50), bauarten.get(0).betrag, 0);
+    List<Bauart> behandlungen = new JSONSerializer().deserialize(body, new TypeReference<List<Bauart>>() {});
+    //assertEquals(Bauart.create(0, "Einfamilienhaus"), bauarten.get(0));
   }
 
 //  @Test

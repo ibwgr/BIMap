@@ -1,11 +1,11 @@
 document.getElementById("openbtn").addEventListener('click', event => {
     document.getElementById("mySidenav").style.width = "350px";
-    console.log("fsafd")
 });
 
 document.getElementById("closebtn").addEventListener('click', event => {
     document.getElementById("mySidenav").style.width = "0";
 });
+
 
 
 /***************************

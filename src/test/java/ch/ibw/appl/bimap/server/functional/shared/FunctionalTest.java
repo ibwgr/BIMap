@@ -11,12 +11,16 @@ import spark.servlet.SparkApplication;
 
 public class FunctionalTest {
 
-  public static class BehandlungApplication implements SparkApplication {
+  public static class BIMapApp implements SparkApplication {
     private HttpServer httpServer;
 
     @Override
     public void init() {
+<<<<<<< Updated upstream
       httpServer = new HttpServer("4567", true);
+=======
+      httpServer = new HttpServer("3567", true);
+>>>>>>> Stashed changes
       httpServer.start();
     }
 
@@ -27,7 +31,7 @@ public class FunctionalTest {
   }
 
   @Rule
-  public SparkServer<BehandlungApplication> httpClient = new SparkServer<>(BehandlungApplication.class);
+  public SparkServer<BIMapApp> httpClient = new SparkServer<>(BIMapApp.class);
 
   public HttpResponse executeGet(String path, String acceptType){
     GetMethod method = httpClient.get(path, false);

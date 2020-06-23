@@ -3,4 +3,3 @@ export class Projekt {
         Object.assign(this, obj)
     }
 }
-
