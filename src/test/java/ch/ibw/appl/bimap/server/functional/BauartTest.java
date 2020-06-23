@@ -18,7 +18,7 @@ public class BauartTest extends FunctionalTest {
 
   @Test
   public void notAcceptable() throws HttpClientException {
-    GetMethod method = httpClient.get("/bauart", false);
+    GetMethod method = httpClient.get("/bauarten", false);
     HttpResponse response = httpClient.execute(method);
     String body = new String(response.body());
     System.out.println(body);
@@ -28,9 +28,8 @@ public class BauartTest extends FunctionalTest {
   }
 
   @Test
-  public void get_angebote() {
-    HttpResponse response = executeGet("/projekte");
-//    HttpResponse response = executeGet("/todo/items", "text/csv");
+  public void get_bauarten_returnValidAnswer() {
+    HttpResponse response = executeGet("/bauarten");
 
     assertEquals(HttpStatus.OK_200, response.code());
     assertEquals("application/json", response.headers().get("Content-Type").get(0));
@@ -39,7 +38,7 @@ public class BauartTest extends FunctionalTest {
     System.out.println(body);
 
     List<Bauart> bauarten = new JSONSerializer().deserialize(body, new TypeReference<List<Bauart>>() {});
-    //assertEquals(new Float(50), bauarten.get(0).betrag, 0);
+    assertEquals(Bauart.create(1, "Einfamilienhaus").bauart, bauarten.get(0).bauart);
   }
 
 //  @Test
