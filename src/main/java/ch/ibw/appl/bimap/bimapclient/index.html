@@ -8,52 +8,48 @@
 </head>
 <body>
 
+<main id="the-app" class="bimap">
+    <div id="map" class="map"></div>
 
-<div id="map" class="map"></div>
-
-<div id="popup" class="ol-popup">
-    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-    <div id="popup-content"></div>
-</div>
-
-<div id="mySidenav" class="sidenav">
-    <a id="closebtn" href="javascript:void(0)" class="closebtn">&times;</a>
-
-    <h2>Filter</h2>
-    <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
-
-    <div class="custom-select">
-        <select>
-            <option value="0">Bauherr:</option>
-            <option value="1">Meier</option>
-            <option value="2">Mustermann</option>
-        </select>
+    <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
     </div>
 
-    <div class="custom-select">
-        <select>
-            <option value="0">Bauart:</option>
-            <option value="1">Einfamilienhaus</option>
-            <option value="2">Mehrfamilienhaus</option>
-        </select>
+    <div id="mySidenav" class="sidenav">
+        <a id="closebtn" href="javascript:void(0)" class="closebtn">&times;</a>
+
+        <h2>Filter</h2>
+        <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+
+        <div class="custom-select">
+            <select id="bauherr">
+                <option value="0">Bauherr:</option>
+            </select>
+        </div>
+
+        <div class="custom-select">
+            <select id="bauart">
+                <option value="0">Bauart:</option>
+            </select>
+        </div>
+
+        <div class="custom-select">
+            <select id="realisierungsjahr">
+                <option value="0">Realisierungsjahr:</option>
+            </select>
+        </div>
+
+        <button class="button button1" id="FilterIt">Anzeigen</button>
+
     </div>
 
-    <div class="custom-select">
-        <select>
-            <option value="0">Realisierungsjahr:</option>
-            <option value="1">2020</option>
-            <option value="2">2019</option>
-        </select>
-    </div>
+    <div class="closer" id="openbtn" style="font-size:30px;cursor:pointer">&#9776;</div>
 
-    <button class="button button1">Anzeigen</button>
+</main>
 
-</div>
+<script type="module" src="js/app.js"></script>
+<script src="//api3.geo.admin.ch/loader.js?version=4.4.2" type="text/javascript"></script>
 
-<div class="closer" id="openbtn" style="font-size:30px;cursor:pointer">&#9776;</div>
-
-<script type="module" src="js/main.js"></script>
-<script src="//api3.geo.admin.ch/loader.js?version=4.4.2&ignore_polyfill=true" type="text/javascript"></script>
-<script src="js/filter.js"></script>
 </body>
 </html>

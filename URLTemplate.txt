@@ -7,7 +7,7 @@
 
 /projekte/:id	-> ERLEDIGT
  
-/projekte?bauherr="EingabeClient"&Bauart="EingabeClient"
+/projekte?bauherr="EingabeClient"&Bauart="EingabeClient"&Realisierungsjahr="EingabeClient"
 
 
 Für Filterfunktionen:
