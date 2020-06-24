@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>sdg</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/filter.css">
 </head>
 <body>
 
@@ -15,8 +16,44 @@
     <div id="popup-content"></div>
 </div>
 
+<div id="mySidenav" class="sidenav">
+    <a id="closebtn" href="javascript:void(0)" class="closebtn">&times;</a>
+
+    <h2>Filter</h2>
+    <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+
+    <div class="custom-select">
+        <select>
+            <option value="0">Bauherr:</option>
+            <option value="1">Meier</option>
+            <option value="2">Mustermann</option>
+        </select>
+    </div>
+
+    <div class="custom-select">
+        <select>
+            <option value="0">Bauart:</option>
+            <option value="1">Einfamilienhaus</option>
+            <option value="2">Mehrfamilienhaus</option>
+        </select>
+    </div>
+
+    <div class="custom-select">
+        <select>
+            <option value="0">Realisierungsjahr:</option>
+            <option value="1">2020</option>
+            <option value="2">2019</option>
+        </select>
+    </div>
+
+    <button class="button button1">Anzeigen</button>
+
+</div>
+
+<div class="closer" id="openbtn" style="font-size:30px;cursor:pointer">&#9776;</div>
 
 <script type="module" src="js/main.js"></script>
 <script src="//api3.geo.admin.ch/loader.js?version=4.4.2&ignore_polyfill=true" type="text/javascript"></script>
+<script src="js/filter.js"></script>
 </body>
 </html>

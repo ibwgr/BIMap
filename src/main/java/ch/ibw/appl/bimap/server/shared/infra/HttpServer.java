@@ -56,6 +56,11 @@ public class HttpServer {
 
     server.before(((request, response) -> {
       response.header("Access-Control-Allow-Origin", "*");
+      if(!request.pathInfo().equalsIgnoreCase("/hello")){
+        if(!request.headers("Accept").contains("application/json")){
+          server.halt(HttpStatus.NOT_ACCEPTABLE_406);
+        }
+      }
     }));
 
     server.afterAfter(((request, response) -> response.type("application/json")));

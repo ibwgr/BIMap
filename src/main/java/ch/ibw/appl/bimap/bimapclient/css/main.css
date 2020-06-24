@@ -3,38 +3,72 @@ body {
     margin: 0;
 }
 .map {
+    height: 700px;
+}
 
+
+/* https://openstreetmap.be/en/projects/howto/openlayers-demo.html */
+
+.ol-attribution.ol-logo-only,
+.ol-attribution.ol-uncollapsible {
+    max-width: calc(100% - 3em) !important;
+    height: 1.5em !important;
 }
-.popup {
+
+.ol-control button,
+.ol-attribution,
+.ol-scale-line-inner {
+    font-family: "Courier New", 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif !important;
+}
+
+.ol-popup {
+    font-family: "Courier New", 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif !important;
+    font-size: 12px;
+    position: absolute;
     background-color: white;
-    padding-left: 8px;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    width: 220px;
-    color: #555;
-    font: 11px tahoma,arial,verdana,sans-serif;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 200px;
 }
-.title {
-    margin-top: -4px;
-    font-weight: bold;
+
+.ol-popup:after,
+.ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
 }
-.subtitle {
-    font-style: normal;
-    margin-bottom: -3px;
-    margin-top: -5px;
+
+.ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
 }
-.middle {
-    margin-top: -9px;
+
+.ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
 }
-.close {
-    cursor: pointer;
+
+.ol-popup-closer {
     text-decoration: none;
     position: absolute;
     top: 2px;
     right: 8px;
-    font-size: larger;
-    font-weight: bold;
 }
-button {
-    cursor: pointer;
+
+.ol-popup-closer:after {
+    content: "✖";
+    color: #c3c3c3;
 }

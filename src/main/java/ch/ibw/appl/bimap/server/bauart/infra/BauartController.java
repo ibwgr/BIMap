@@ -1,6 +1,5 @@
 package ch.ibw.appl.bimap.server.bauart.infra;
 
-
 import ch.ibw.appl.bimap.server.bauart.service.BauartService;
 import ch.ibw.appl.bimap.server.shared.service.JSONSerializer;
 import spark.Service;
@@ -11,24 +10,15 @@ public class BauartController {
   public BauartController(Boolean isTest) {
     bauartService = new BauartService(new BauartSQL2ORepository(isTest));
   }
-
-  public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
+  public void createRoutes(Service server) {
     server.get("/bauarten", "application/json",
             (request, response) -> {
-              response.type("application/json");
               return bauartService.all();
-            },
-            jsonSerializer::serialize);
+            }, jsonSerializer::serialize);
 
-      System.out.println(bauartService.all());
-
-//    server.get("/todo/items", "text/csv",
-//            (request, response) ->  todoItemService.all(),
-//            model -> null/*make csv*/);
-
-    server.get("/bauarten", (request, response) -> {
+    server.get("/bauarten/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
       return bauartService.getById(id);
     }, jsonSerializer::serialize);
