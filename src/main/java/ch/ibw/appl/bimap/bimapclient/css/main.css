@@ -18,11 +18,11 @@ body {
 .ol-control button,
 .ol-attribution,
 .ol-scale-line-inner {
-    font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif !important;
+    font-family: "Courier New", 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif !important;
 }
 
 .ol-popup {
-    font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif !important;
+    font-family: "Courier New", 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif !important;
     font-size: 12px;
     position: absolute;
     background-color: white;

@@ -10,20 +10,18 @@ public class BauartController {
   public BauartController(Boolean isTest) {
     bauartService = new BauartService(new BauartSQL2ORepository(isTest));
   }
-
-  public void createRoutes(Service server) {
     JSONSerializer jsonSerializer = new JSONSerializer();
 
+  public void createRoutes(Service server) {
     server.get("/bauarten", "application/json",
             (request, response) -> {
               return bauartService.all();
             }, jsonSerializer::serialize);
 
-
-//    server.get("/bauarten", (request, response) -> {
-//      int id = Integer.parseInt(request.params("id"));
-//      return bauartService.getById(id);
-//    }, jsonSerializer::serialize);
+    server.get("/bauarten/:id", (request, response) -> {
+      int id = Integer.parseInt(request.params("id"));
+      return bauartService.getById(id);
+    }, jsonSerializer::serialize);
 
 //    server.post("/bauart", (request, response) -> {
 //      Bauart bauart = jsonSerializer.deserialize(request.body(), new TypeReference<Bauart>() {});

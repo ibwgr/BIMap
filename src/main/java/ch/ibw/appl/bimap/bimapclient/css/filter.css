@@ -1,6 +1,7 @@
 h2 {
     padding-left: 20px;
     color: white;
+    font-family: "Courier New";
 }
 .sidenav {
     height: 100%;
@@ -48,7 +49,7 @@ h2 {
     left: 0;
     height:100px;
     text-align: center;
-    background-color: #A59E80;
+    background-color: #e74c3c;  /* #A59E80 */
 }
 /***********************/
 /* Dropdown Options    */
@@ -57,7 +58,7 @@ h2 {
 /*the container must be positioned relative:*/
 .custom-select {
     position: relative;
-    font-family: Arial;
+    font-family: "Courier New";
     width:250px;
     padding-left: 20px;
     margin-bottom: 30px;
@@ -147,7 +148,7 @@ h2 {
 }
 
 .button1:hover {
-    background-color: #4CAF50;
+    background-color: #e74c3c; /* #4CAF50; */
     color: white;
 }
 /****************************/

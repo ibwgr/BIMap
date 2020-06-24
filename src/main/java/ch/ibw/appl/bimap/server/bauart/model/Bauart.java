@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class Bauart {
-    public String bauart;
     public int idbauart;
+    public String bauart;
 
     public static Bauart create(int idbauart, String bauartdef) {
         Bauart bauart = new Bauart();
