@@ -19,6 +19,7 @@ public class ProjektController {
               return projektService.all();
             },
             jsonSerializer::serialize);
+      System.out.println(projektService.all());
 
     server.get("/projekte/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));

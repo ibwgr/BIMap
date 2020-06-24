@@ -2,7 +2,7 @@ package ch.ibw.appl.bimap.server.shared.infra;
 
 import ch.ibw.appl.bimap.server.bauart.infra.BauartController;
 import ch.ibw.appl.bimap.server.hello.HelloController;
-import ch.ibw.appl.bimap.server.leistung.infra.LeistungController;
+//import ch.ibw.appl.bimap.server.leistung.infra.LeistungController;
 import ch.ibw.appl.bimap.server.projekte.infra.ProjektController;
 import ch.ibw.appl.bimap.server.shared.service.ValidationError;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -31,7 +31,7 @@ public class HttpServer {
     new BauartController(isTest).createRoutes(server);
     new HelloController(isTest).createRoutes(server);
     new ProjektController(isTest).createRoutes(server);
-    new LeistungController(isTest).createRoutes(server);
+//    new LeistungController(isTest).createRoutes(server);
 
     server.options("/*",
             (request, response) -> {
