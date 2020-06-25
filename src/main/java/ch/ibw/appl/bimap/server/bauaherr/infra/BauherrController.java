@@ -1,28 +1,29 @@
-package ch.ibw.appl.bimap.server.bauart.infra;
+package ch.ibw.appl.bimap.server.bauaherr.infra;
 
-import ch.ibw.appl.bimap.server.bauart.service.BauartService;
+import ch.ibw.appl.bimap.server.bauaherr.service.BauherrService;
 import ch.ibw.appl.bimap.server.shared.service.JSONSerializer;
 import spark.Service;
 
-public class BauartController {
-  private BauartService bauartService;
+public class BauherrController {
+  private BauherrService bauherrService;
 
-  public BauartController(Boolean isTest) {
-    bauartService = new BauartService(new BauartSQL2ORepository(isTest));
+  public BauherrController(Boolean isTest) {
+    bauherrService = new BauherrService(new BauherrSQL2ORepository(isTest));
   }
     JSONSerializer jsonSerializer = new JSONSerializer();
 
   public void createRoutes(Service server) {
-    server.get("/bauarten", "application/json",
+    server.get("/bauherren", "application/json",
             (request, response) -> {
-              return bauartService.all();
+              return bauherrService.all();
             }, jsonSerializer::serialize);
 
-//            System.out.println(bauartService.all());
+            System.out.println("TESTESTEST");
+            System.out.println(bauherrService.all());
 
-    server.get("/bauarten/:id", (request, response) -> {
+    server.get("/bauherr/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
-      return bauartService.getById(id);
+      return bauherrService.getById(id);
     }, jsonSerializer::serialize);
 
 //    server.post("/bauart", (request, response) -> {

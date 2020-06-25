@@ -1,5 +1,6 @@
 package ch.ibw.appl.bimap.server.shared.infra;
 
+import ch.ibw.appl.bimap.server.bauaherr.infra.BauherrController;
 import ch.ibw.appl.bimap.server.bauart.infra.BauartController;
 import ch.ibw.appl.bimap.server.hello.HelloController;
 //import ch.ibw.appl.bimap.server.leistung.infra.LeistungController;
@@ -32,6 +33,7 @@ public class HttpServer {
     new HelloController(isTest).createRoutes(server);
     new ProjektController(isTest).createRoutes(server);
 //    new LeistungController(isTest).createRoutes(server);
+    new BauherrController(isTest).createRoutes(server);
 
     server.options("/*",
             (request, response) -> {

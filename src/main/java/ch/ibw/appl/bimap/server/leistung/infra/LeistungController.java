@@ -20,6 +20,7 @@ public class LeistungController {
               return leistungService.all();
             },
             jsonSerializer::serialize);
+//            System.out.println(leistungService.all());
 
 
 //    server.get("/leistungen/:id", (request, response) -> {
