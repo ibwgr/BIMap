@@ -15,18 +15,22 @@ public class ProjektController {
         JSONSerializer jsonSerializer = new JSONSerializer();
 
         server.get("/projekte", (request, response) -> {
-                    String bauherr = request.queryParamOrDefault("bauherr", "");
-                    String bauart = request.queryParamOrDefault("bauart", "");
-                    int realisierungsjahr = Integer.parseInt(request.queryParamOrDefault("realisiserungsjahr", "0"));
+            String bauherr = request.queryParamOrDefault("bauherr", "");
+            String bauart = request.queryParamOrDefault("bauart", "");
+            int realisierungsjahr = Integer.parseInt(request.queryParamOrDefault("realisierungsjahr", "0"));
 
-                    return projektService.getByFilter(bauherr, bauart, realisierungsjahr);
-                },
-                jsonSerializer::serialize);
+            return projektService.getByFilter(bauherr, bauart, realisierungsjahr);
+            }, jsonSerializer::serialize);
+//        System.out.println(projektService.all());
+
 
         server.get("/projekte/:id", (request, response) -> {
             int id = Integer.parseInt(request.params("id"));
             return projektService.getById(id);
         }, jsonSerializer::serialize);
+
+
+
 //
 //    server.post("/angebote", (request, response) -> {
 //      Projekt projekt = jsonSerializer.deserialize(request.body(), new TypeReference<Projekt>() {});

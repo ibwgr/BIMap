@@ -1,5 +1,6 @@
-package ch.ibw.appl.bimap.server.bauart.infra;
+package ch.ibw.appl.bimap.server.bauaherr.infra;
 
+import ch.ibw.appl.bimap.server.bauaherr.model.Bauherr;
 import ch.ibw.appl.bimap.server.bauart.model.Bauart;
 
 
@@ -11,11 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class BauartSQL2ORepository {
+public class BauherrSQL2ORepository {
 
     private final Sql2o sql2o;
 
-    public BauartSQL2ORepository(boolean isTest) {
+    public BauherrSQL2ORepository(boolean isTest) {
         if (isTest) {
             sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
             try (Connection conn = sql2o.open()) {
@@ -42,9 +43,9 @@ public class BauartSQL2ORepository {
         }
     }
 
-    public List<Bauart> all() {
+    public List<Bauherr> all() {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("select * from bauart").executeAndFetch(Bauart.class);
+            return conn.createQuery("select * from bauherr").executeAndFetch(Bauherr.class);
         }
     }
 
@@ -58,11 +59,11 @@ public class BauartSQL2ORepository {
 //    }
 //  }
 
-    public Bauart get(int id) {
-        List<Bauart> bauarten = all();
-        for (Bauart bauart : bauarten) {
-            if (bauart.idbauart == id) {
-                return bauart;
+    public Bauherr get(int id) {
+        List<Bauherr> bauherren = all();
+        for (Bauherr bauherr : bauherren) {
+            if (bauherr.idbauherr == id) {
+                return bauherr;
             }
         }
         return null;
