@@ -102,6 +102,7 @@ public class ProjektSQL2ORepository {
   public List<Projekt> getByFilter(String bauherr, String bauart, int realisierungsjahr) {
     List<Projekt> projekte = all();
     List<Projekt> filterdProjekte = new ArrayList<>();
+
     for (Projekt projekt : projekte){
       if (projekt.bauherr.contains(bauherr) && projekt.bauart.contains(bauart) && projekt.realisierungsjahr > realisierungsjahr) {
         filterdProjekte.add(projekt);

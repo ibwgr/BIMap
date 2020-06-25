@@ -1,7 +1,8 @@
 export class Controller {
-    constructor(view, store) {
+    constructor(view, store, map) {
         this.view = view
         this.store = store
+        this.map = map
     }
 
     async start() {
@@ -12,10 +13,13 @@ export class Controller {
         this.view.addBauherrToList(this.store.getAllBauherren())
         this.view.addRealisierungsjahreToList(this.store.getAllProjekte())
         this.view.createFilter()
-        this.view.createMap(this.store.getAllProjekte())
-        this.view.registerOnAddItemHandler((bauherr, bauart, realJahr) => {
-            this.store.loadProjektByFilter(bauherr, bauart, realJahr)
-            this.view.createMap(this.store.getAllProjekte())
+        this.map.setMapBackground()
+        this.map.setPopUpOverlay(this.store.getAllProjekte())
+        this.map.markProjects(this.store.getAllProjekte())
+        this.view.registerOnAddItemHandler(async (bauherr, bauart, realJahr) => {
+            await this.store.loadProjektByFilter(bauherr, bauart, realJahr)
+            this.map.deleteProjectMarks()
+            this.map.markProjects(this.store.getAllProjekte())
         })
 
     }

@@ -22,27 +22,40 @@ export class Store {
     }
 
     async loadAllBauherren() {
-        const response = await fetch("http://localhost:2567/bauherren", {
-            headers: new Headers({"accept": "application/json"})
-        })
-        const data = await response.json()
+        // const response = await fetch("http://localhost:2567/bauherren", {
+        //     headers: new Headers({"accept": "application/json"})
+        // })
+        // const data = await response.json()
+
+        let data = ["te", "st"]
         data.forEach(item => {
             let bauherr = new Bauherr(item)
             this.existingBauherren.push(bauart)
         })
     }
 
-    async loadProjektByFilter(bauherr, bauart, realisierungsjahr) {
-        this.existingProjekte = []
+    async loadProjektByFilter(bauherr, bauart, realJahr) {
+        if (bauherr === "Bauherr:") {
+            bauherr = ""
+        }
+        if (bauart === "Bauart:") {
+            bauart = ""
+        }
+        if (realJahr === "Realisierungsjahr:") {
+            realJahr = ""
+        }
+
         let ReqURL = "http://localhost:2567/projekte" + "?bauherr=" + bauherr + "&bauart=" + bauart + "&realisierungsjahr=" + realisierungsjahr
         const response = await fetch(ReqURL, {
             headers: new Headers({"accept": "application/json"})
         })
         const data = await response.json();
+        let filteredProjekte = []
         data.forEach(item => {
             let projekt = new Projekt(item)
-            this.existingProjekte.push(projekt)
+            filteredProjekte.push(item)
         })
+        this.existingProjekte = filteredProjekte
     }
 
     getAllBauarten() {
