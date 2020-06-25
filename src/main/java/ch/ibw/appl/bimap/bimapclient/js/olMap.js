@@ -50,6 +50,7 @@ export class Map {
         var overlay = new ol.Overlay({
             element: container,
             autoPan: true,
+            zIndex: 10,
             autoPanAnimation: {
                 duration: 250
             }
@@ -69,17 +70,16 @@ export class Map {
                     let projektId = feature.getId();
                     let projekt = projekte.find(projekt => projekt.idprojekt == projektId)
                     let projektinfo =
-                        "<b>Projektinfo</b>" +
-                        "<br/>Projektnummer: " + projekt.projektnummer +
-                        "<br/>Projektname: " + projekt.projektname +
-                        "<br/>Ort: " + projekt.ort +
-                        "<br/>PLZ: " + projekt.plz +
-                        "<br/>Realisierung: " + projekt.realisierungsjahr +
-                        "<br/>Bauherr: " + projekt.bauherr +
-                        "<br/>Bauart: " + projekt.bauart +
-                        "<br/>Projektverfasser: " + projekt.projektverfasser +
-                        "<br/>Leistungen: " + projekt.leistungen +
-                        "<br/>Bausumme: " + projekt.bausumme
+                        "<br/><div class='projektInfoTitle' >Projektnummer: </div>" + "<div class='projektInfoText'>"  + projekt.projektnummer + "</div>" +
+                        "<br/><div class='projektInfoTitle' >Projektname: </div>" + "<div class='projektInfoText'>" + projekt.projektname + "</div>" +
+                        "<br/><div class='projektInfoTitle'>Ort: </div>" + "<div class='projektInfoText'>" + projekt.ort + "</div>" +
+                        "<br/><div class='projektInfoTitle'>PLZ: </div>" + "<div class='projektInfoText'>" + projekt.plz + "</div>" +
+                        "<br/><div class='projektInfoTitle'>Realisierung: </div>" + "<div class='projektInfoText'>" + projekt.realisierungsjahr + "</div>" +
+                        "<br/><div class='projektInfoTitle'>Bauherr: </div>" + "<div class='projektInfoText'>" + projekt.bauherr + "</div>" +
+                        "<br/><div class='projektInfoTitle'>Bauart: </div>" + "<div class='projektInfoText'>" + projekt.bauart +" </div>" +
+                        "<br/><div class='projektInfoTitle'>Projektverfasser: </div>" + "<div class='projektInfoText'>" + projekt.projektverfasser + "</div>" +
+                        "<br/><div class='projektInfoTitle'>Leistungen: </div>" + "<div class='projektInfoText'>" + projekt.leistungen + "</div>" +
+                        "<br/><div class='projektInfoTitle'>Bausumme: </div>" + "<div class='projektInfoText'>" + projekt.bausumme + "</div>"
 
                     content.innerHTML = projektinfo;
 
@@ -104,10 +104,11 @@ export class Map {
                 source: new ol.source.Vector({
                     features: [feature]
                 }),
+                zIndex: 10,
                 name: "marker",
                 style: new ol.style.Style({
                     image: new ol.style.Icon({
-                        anchor: [0.5, 0.5],
+                        anchor: [0, 0],
                         anchorXUnits: 'fraction',
                         anchorYUnits: 'pixels',
                         scale: 0.5,
@@ -126,11 +127,16 @@ export class Map {
         let filteredMarks = marks.filter(layer => layer.get("name") === "marker")
         filteredMarks.forEach(layer => this.map.removeLayer(layer))
     }
+
+    changeMap() {
+        var element = document.getElementById('example')
+        if (element.src.match("card2")) {
+            this.map.removeLayer(Luftbildkarte)
+            this.map.addLayer(pixelkarteGrau)
+        } else {
+            this.map.removeLayer(pixelkarteGrau)
+            this.map.addLayer(Luftbildkarte);
+        }
+    }
 }
 
-    // let mapDiv = document.getElementById("map")
-    // if (mapDiv.hasChildNodes()) {
-    //     mapDiv.childNodes.forEach(node => mapDiv.removeChild(node))
-    // } else {
-    //
-    // }

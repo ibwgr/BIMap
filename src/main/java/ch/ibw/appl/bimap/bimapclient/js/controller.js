@@ -21,7 +21,21 @@ export class Controller {
             this.map.deleteProjectMarks()
             this.map.markProjects(this.store.getAllProjekte())
         })
+        document.getElementById("cardswitch").addEventListener('click', event => {
+            changeMap()
+            changeCardSmall()
+        });
 
+    }
+
+    changeCardSmall() {
+        let element=document.getElementById('example')
+        if (element.src.match("card2"))
+        {
+            element.src="img/card1.jpg";
+        }else{
+            element.src="img/card2.jpg";
+        }
     }
 
 }
