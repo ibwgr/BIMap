@@ -2,7 +2,6 @@ package ch.ibw.appl.bimap.server.bauaherr.model;
 
 import javax.persistence.Entity;
 
-
 @Entity
 public class Bauherr {
     public int idbauherr;

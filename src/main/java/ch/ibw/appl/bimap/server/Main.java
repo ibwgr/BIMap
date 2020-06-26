@@ -1,14 +1,13 @@
 package ch.ibw.appl.bimap.server;
 
 import ch.ibw.appl.bimap.server.shared.infra.HttpServer;
-
 import java.util.Arrays;
 import java.util.Optional;
 
 public class Main {
 
   public static void main(String[] args) {
-    // Fill in your SQL Username and Password:
+    /******* Fill in your SQL Username and Password here*********/
     String username = "root";
     String password = "";
 

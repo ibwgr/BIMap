@@ -3,7 +3,6 @@ package ch.ibw.appl.bimap.server.projekte.infra;
 import ch.ibw.appl.bimap.server.projekte.model.Projekt;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -88,7 +87,6 @@ public class ProjektSQL2ORepository {
     }
   }
 
-
   public Projekt get(int id) {
     List<Projekt> projekte = all();
     for (Projekt projekt : projekte){
@@ -108,7 +106,6 @@ public class ProjektSQL2ORepository {
         filterdProjekte.add(projekt);
       }
     }
-    System.out.println(filterdProjekte);
     return filterdProjekte;
   }
 }

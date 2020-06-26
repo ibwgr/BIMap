@@ -21,21 +21,10 @@ public class ProjektController {
 
             return projektService.getByFilter(bauherr, bauart, realisierungsjahr);
             }, jsonSerializer::serialize);
-//        System.out.println(projektService.all());
-
 
         server.get("/projekte/:id", (request, response) -> {
             int id = Integer.parseInt(request.params("id"));
             return projektService.getById(id);
         }, jsonSerializer::serialize);
-
-
-
-//
-//    server.post("/angebote", (request, response) -> {
-//      Projekt projekt = jsonSerializer.deserialize(request.body(), new TypeReference<Projekt>() {});
-//      response.status(HttpStatus.CREATED_201);
-//      return projektService.create(projekt);
-//    }, jsonSerializer::serialize);
     }
 }

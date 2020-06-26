@@ -22,7 +22,6 @@ public class BauherrTest extends FunctionalTest {
     GetMethod method = httpClient.get("/bauherren", false);
     HttpResponse response = httpClient.execute(method);
     String body = new String(response.body());
-    System.out.println(body);
 
 //    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
     assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());

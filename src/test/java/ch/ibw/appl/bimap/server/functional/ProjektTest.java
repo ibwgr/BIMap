@@ -21,9 +21,7 @@ public class ProjektTest extends FunctionalTest {
     GetMethod method = httpClient.get("/projekte", false);
     HttpResponse response = httpClient.execute(method);
     String body = new String(response.body());
-    System.out.println(body);
 
-//    assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
     assertEquals(HttpStatus.NOT_ACCEPTABLE_406, response.code());
   }
 
@@ -51,19 +49,14 @@ public class ProjektTest extends FunctionalTest {
 
     Projekt projekte = new JSONSerializer().deserialize(body, new TypeReference<Projekt>() {});
     assertEquals(Projekt.create(1, 0502,"Kindergarten Taescherloch",1,2759543, 1220275,2009,286000, 1).projektname, projekte.projektname);
-    System.out.println(projekte.bauherr);
   }
-
-  //Querey-Test
 
   @Test
   public void get_byQuery() {
     HttpResponse response = executeGet("/projekte?&bauherr=Gemeinde%20Triesenberg&bauart=Öffentlicher%20Bau&realisiserungsjahr=2010");
     assertEquals(HttpStatus.OK_200, response.code());
     assertEquals("application/json", response.headers().get("Content-Type").get(0));
-
     String body = new String(response.body());
-    System.out.println(body);
 
     Projekt[] projekte = new JSONSerializer().deserialize(body, new TypeReference<Projekt[]>() {});
     assertEquals(Projekt.create(1, 0502,"Kindergarten Taescherloch",1,2759543, 1220275,2009,286000, 1).koordx, projekte[0].koordx);

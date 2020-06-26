@@ -35,9 +35,7 @@ INSERT INTO `bauart` (`idbauart`, `bauart`) VALUES
 	(6, 'Gleisbau'),
 	(7, 'Kommunaler Tiefbau'),
 	(8, 'Touristische Anlagen'),
-	(9, 'Kunstbauten'),
-	(10, 'Holzbau'),
-	(11, 'Konstruktiver Ingenieurbau');
+	(9, 'Kunstbauten');
 /*!40000 ALTER TABLE `bauart` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle bimap.bauartprojekt
@@ -86,8 +84,6 @@ INSERT INTO `bauherr` (`idbauherr`, `bauherr`) VALUES
 	(1, 'Gemeinde Triesenberg'),
 	(2, 'Privat'),
 	(3, 'BEVOLA Immobilien Anstalt'),
-	(4, 'Hasler Rainer & Petra'),
-	(5, 'Clemens Lampert'),
 	(6, 'Rhätische Bahn AG'),
 	(7, 'Tiefbauamt Graubünden'),
 	(8, 'ASTRA'),

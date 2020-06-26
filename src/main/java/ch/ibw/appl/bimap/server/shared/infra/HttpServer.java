@@ -2,8 +2,6 @@ package ch.ibw.appl.bimap.server.shared.infra;
 
 import ch.ibw.appl.bimap.server.bauaherr.infra.BauherrController;
 import ch.ibw.appl.bimap.server.bauart.infra.BauartController;
-import ch.ibw.appl.bimap.server.hello.HelloController;
-//import ch.ibw.appl.bimap.server.leistung.infra.LeistungController;
 import ch.ibw.appl.bimap.server.projekte.infra.ProjektController;
 import ch.ibw.appl.bimap.server.shared.service.ValidationError;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,8 +9,6 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.LoggerFactory;
 import spark.Service;
-
-import static spark.Spark.options;
 
 public class HttpServer {
 

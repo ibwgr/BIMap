@@ -1,11 +1,8 @@
 package ch.ibw.appl.bimap.server.bauart.infra;
 
 import ch.ibw.appl.bimap.server.bauart.model.Bauart;
-
-
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -48,16 +45,6 @@ public class BauartSQL2ORepository {
         }
     }
 
-//  @Override
-//  public ModelId add(Bauart bauart) {
-//    try(Connection conn = sql2o.open()){
-//      Query preparedStatement = conn.createQuery("insert into bauart", true).bind(bauart);
-//      int newId = Integer.parseInt(preparedStatement.executeUpdate().getKey().toString());
-//      System.out.println(newId);
-//      return ModelId.create(newId);
-//    }
-//  }
-
     public Bauart get(int id) {
         List<Bauart> bauarten = all();
         for (Bauart bauart : bauarten) {
@@ -65,10 +52,6 @@ public class BauartSQL2ORepository {
                 return bauart;
             }
         }
-        return null;
-    }
-
-    public Bauart findByDescription(String description) {
         return null;
     }
 }
