@@ -23,12 +23,6 @@ public class Projekt {
     public String projektverfasser;
     public String leistungen;
 
-
-
-    @Id
-    @GeneratedValue
-    public Long id;
-
     public static Projekt create(int idprojekt, int projektnummer, String projektname, int ortid, int koordx, int koordy, int realisierungsjahr, float bausumme, int bauherrid) {
         Projekt pr = new Projekt();
         pr.idprojekt = idprojekt;

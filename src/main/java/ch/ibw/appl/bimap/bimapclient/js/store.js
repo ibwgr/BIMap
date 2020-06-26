@@ -22,30 +22,27 @@ export class Store {
     }
 
     async loadAllBauherren() {
-        // const response = await fetch("http://localhost:2567/bauherren", {
-        //     headers: new Headers({"accept": "application/json"})
-        // })
-        // const data = await response.json()
-
-        let data = ["te", "st"]
+        const response = await fetch("http://localhost:2567/bauherren", {
+            headers: new Headers({"accept": "application/json"})
+        })
+        const data = await response.json()
         data.forEach(item => {
             let bauherr = new Bauherr(item)
-            this.existingBauherren.push(bauart)
+            this.existingBauherren.push(bauherr)
         })
     }
 
     async loadProjektByFilter(bauherr, bauart, realJahr) {
-        if (bauherr === "Bauherr:") {
-            bauherr = ""
+        let ReqURL = "http://localhost:2567/projekte?"
+        if (bauherr !== "Bauherr:") {
+            ReqURL += "&bauherr=" + bauherr
         }
-        if (bauart === "Bauart:") {
-            bauart = ""
+        if (bauart !== "Bauart:") {
+            ReqURL += "&bauart=" + bauart
         }
-        if (realJahr === "Realisierungsjahr:") {
-            realJahr = ""
+        if (realJahr !== "Realisierungsjahr:") {
+            ReqURL += "&realisierungsjahr=" + realJahr
         }
-
-        let ReqURL = "http://localhost:2567/projekte" + "?bauherr=" + bauherr + "&bauart=" + bauart + "&realisierungsjahr=" + realisierungsjahr
         const response = await fetch(ReqURL, {
             headers: new Headers({"accept": "application/json"})
         })
@@ -80,18 +77,4 @@ export class Store {
     getAllProjekte() {
         return this.existingProjekte
     }
-
-    async loadProjektById(projektId) {
-        const response = await fetch("http://localhost:2567/projekte/" + projektId, {
-            headers: new Headers({"accept": "application/json"})
-        })
-        const data = await response.json()
-        this.projekt = new Projekt(item)
-    }
-
-    getProjektbyId(projektId) {
-        return this.projekt
-    }
-
-
 }

@@ -7,8 +7,8 @@ import spark.Service;
 public class BauherrController {
   private BauherrService bauherrService;
 
-  public BauherrController(Boolean isTest) {
-    bauherrService = new BauherrService(new BauherrSQL2ORepository(isTest));
+  public BauherrController(Boolean isTest, String username, String password) {
+    bauherrService = new BauherrService(new BauherrSQL2ORepository(isTest, username, password));
   }
     JSONSerializer jsonSerializer = new JSONSerializer();
 
@@ -18,18 +18,10 @@ public class BauherrController {
               return bauherrService.all();
             }, jsonSerializer::serialize);
 
-            System.out.println("TESTESTEST");
-            System.out.println(bauherrService.all());
-
     server.get("/bauherr/:id", (request, response) -> {
       int id = Integer.parseInt(request.params("id"));
       return bauherrService.getById(id);
     }, jsonSerializer::serialize);
 
-//    server.post("/bauart", (request, response) -> {
-//      Bauart bauart = jsonSerializer.deserialize(request.body(), new TypeReference<Bauart>() {});
-//      response.status(HttpStatus.CREATED_201);
-//      return bauartService.create(bauart);
-//    }, jsonSerializer::serialize);
   }
 }

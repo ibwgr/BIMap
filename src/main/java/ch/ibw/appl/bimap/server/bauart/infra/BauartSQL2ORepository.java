@@ -15,15 +15,15 @@ public class BauartSQL2ORepository {
 
     private final Sql2o sql2o;
 
-    public BauartSQL2ORepository(boolean isTest) {
+    public BauartSQL2ORepository(boolean isTest, String username, String password) {
         if (isTest) {
-            sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
+            sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", username, password);
             try (Connection conn = sql2o.open()) {
                 executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
                 executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
             }
         } else {
-            sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
+            sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", username, password);
         }
     }
 

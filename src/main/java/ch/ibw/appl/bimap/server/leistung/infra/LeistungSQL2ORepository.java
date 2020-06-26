@@ -15,13 +15,13 @@ public class LeistungSQL2ORepository{
 
   public LeistungSQL2ORepository(boolean isTest) {
     if(isTest){
-      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "root", "");
       try(Connection conn = sql2o.open()){
         executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
         executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
       }
     }else{
-      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "root", "");
     }
   }
 

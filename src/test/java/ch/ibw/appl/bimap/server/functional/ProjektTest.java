@@ -1,7 +1,5 @@
 package ch.ibw.appl.bimap.server.functional;
 
-import ch.ibw.appl.bimap.server.bauaherr.model.Bauherr;
-import ch.ibw.appl.bimap.server.bauart.model.Bauart;
 import ch.ibw.appl.bimap.server.functional.shared.FunctionalTest;
 import ch.ibw.appl.bimap.server.projekte.model.Projekt;
 import ch.ibw.appl.bimap.server.shared.service.JSONSerializer;
@@ -60,16 +58,15 @@ public class ProjektTest extends FunctionalTest {
 
   @Test
   public void get_byQuery() {
-    HttpResponse response = executeGet("/projekte?bauherr=Gemeinde Triesenberg&bauart=&realisierungsjahr=");
-
+    HttpResponse response = executeGet("/projekte?&bauherr=Gemeinde%20Triesenberg&bauart=Öffentlicher%20Bau&realisiserungsjahr=2010");
     assertEquals(HttpStatus.OK_200, response.code());
     assertEquals("application/json", response.headers().get("Content-Type").get(0));
 
     String body = new String(response.body());
     System.out.println(body);
 
-    Projekt projekte = new JSONSerializer().deserialize(body, new TypeReference<Projekt>() {});
-    assertEquals(Projekt.create(1, 0502,"Kindergarten Taescherloch",1,2759543, 1220275,2009,286000, 1).bauherr, projekte.bauherr);
+    Projekt[] projekte = new JSONSerializer().deserialize(body, new TypeReference<Projekt[]>() {});
+    assertEquals(Projekt.create(1, 0502,"Kindergarten Taescherloch",1,2759543, 1220275,2009,286000, 1).koordx, projekte[0].koordx);
   }
 
 

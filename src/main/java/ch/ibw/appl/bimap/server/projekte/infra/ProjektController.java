@@ -7,8 +7,8 @@ import spark.Service;
 public class ProjektController {
     private ProjektService projektService;
 
-    public ProjektController(Boolean isTest) {
-        projektService = new ProjektService(new ProjektSQL2ORepository(isTest));
+    public ProjektController(Boolean isTest, String username, String password) {
+        projektService = new ProjektService(new ProjektSQL2ORepository(isTest, username, password));
     }
 
     public void createRoutes(Service server) {

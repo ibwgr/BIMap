@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-public class Bauart extends Bauherr {
+public class Bauart {
     public int idbauart;
     public String bauart;
 

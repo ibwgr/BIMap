@@ -18,22 +18,24 @@ public class HttpServer {
 
   private final String httpPort;
   private final Boolean isTest;
+  private final String username;
+  private final String password;
   private Service server;
 
-  public HttpServer(String httpPort, Boolean isTest) {
+  public HttpServer(String httpPort, Boolean isTest, String SQLUserName, String SQLPassword) {
     this.httpPort = httpPort;
     this.isTest = isTest;
+    this.username = SQLUserName;
+    this.password = SQLPassword;
   }
 
   public void start() {
     server = Service.ignite();
     server.port(Integer.parseInt(httpPort));
 
-    new BauartController(isTest).createRoutes(server);
-    new HelloController(isTest).createRoutes(server);
-    new ProjektController(isTest).createRoutes(server);
-//    new LeistungController(isTest).createRoutes(server);
-    new BauherrController(isTest).createRoutes(server);
+    new BauartController(isTest, username, password).createRoutes(server);
+    new ProjektController(isTest, username, password).createRoutes(server);
+    new BauherrController(isTest, username, password).createRoutes(server);
 
     server.options("/*",
             (request, response) -> {

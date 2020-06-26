@@ -50,7 +50,7 @@ public class BauherrTest extends FunctionalTest {
 
     String body = new String(response.body());
 
-    Bauherr bauherren = new JSONSerializer().deserialize(body, new TypeReference<Bauart>() {});
+    Bauherr bauherren = new JSONSerializer().deserialize(body, new TypeReference<Bauherr>() {});
     assertEquals(Bauherr.create(1, "Gemeinde Triesenberg").bauherr, bauherren.bauherr);
   }
 

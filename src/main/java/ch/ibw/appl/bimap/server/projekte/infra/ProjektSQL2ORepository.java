@@ -14,15 +14,15 @@ public class ProjektSQL2ORepository {
 
   private final Sql2o sql2o;
 
-  public ProjektSQL2ORepository(boolean isTest) {
+  public ProjektSQL2ORepository(boolean isTest, String username, String password) {
     if(isTest){
-      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", username, password);
       try(Connection conn = sql2o.open()){
         executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
         executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
       }
     }else{
-      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", username, password);
     }
   }
 
@@ -82,7 +82,7 @@ public class ProjektSQL2ORepository {
             leistungString += leistung + " ";
           }
         }
-        projekt.leistungen = pvString;
+        projekt.leistungen = leistungString;
       }
       return projekts;
     }
@@ -104,10 +104,11 @@ public class ProjektSQL2ORepository {
     List<Projekt> filterdProjekte = new ArrayList<>();
 
     for (Projekt projekt : projekte){
-      if (projekt.bauherr.contains(bauherr) && projekt.bauart.contains(bauart) && projekt.realisierungsjahr > realisierungsjahr) {
+      if (projekt.bauherr.contains(bauherr) && projekt.bauart.contains(bauart) && projekt.realisierungsjahr >= realisierungsjahr) {
         filterdProjekte.add(projekt);
       }
     }
+    System.out.println(filterdProjekte);
     return filterdProjekte;
   }
 }

@@ -1,5 +1,3 @@
-import {Projekt} from "./projekt.js"
-
 export class View {
     constructor(rootSelector, store) {
         this.addEventListener()
@@ -19,25 +17,23 @@ export class View {
         let typeSelect = document.getElementById("bauherr")
         bauherren.forEach(bauherr => {
             let option = document.createElement("option")
-            option.value = bauherren.idbauherr
-            option.innerText = bauherren.bauherr
+            option.value = bauherr.idbauherr
+            option.innerText = bauherr.bauherr
             typeSelect.appendChild(option)
         })
     }
 
     addRealisierungsjahreToList(projekte) {
-        let oldest = projekte.find((a, b) => (a.realisierungsjahr < b.realisierungsjahr) ? a : b)
-        let oldestDate = oldest.realisierungsjahr
-        let actualDate = new Date().getFullYear()
-        let id = 1
+        let realisierungsjahre = projekte.map(a => a.realisierungsjahr);
+        realisierungsjahre = realisierungsjahre.reduce((arr,b) => arr.includes(b) ? arr : [...arr, b], [])
+        let oldestDate = realisierungsjahre.sort()[0]
         let typeSelect = document.getElementById("realisierungsjahr")
-        for (let i = actualDate; i >= oldestDate; i--) {
+
+        realisierungsjahre.forEach(realJahr => {
             let option = document.createElement("option")
-            option.value = id
-            id++
-            option.innerText = i
+            option.innerText = realJahr
             typeSelect.appendChild(option)
-        }
+        })
     }
 
     addEventListener() {
@@ -61,13 +57,10 @@ export class View {
             document.getElementById("mySidenav").style.width = "0";
         });
 
-        /***************************
-         /* Dropdown Option
-         /***************************/
-
+        //Filter-Fenster aus Vorlage W3Schools
         var x, i, j, l, ll, selElmnt, a, b, c;
-        /*look for any elements with the class "custom-select":*/
 
+        /*look for any elements with the class "custom-select":*/
         x = document.getElementsByClassName("custom-select");
         l = x.length;
         for (i = 0; i < l; i++) {
@@ -121,9 +114,9 @@ export class View {
             });
         }
 
-        function closeAllSelect(elmnt) {
-            /*a function that will close all select boxes in the document,
+        /*a function that will close all select boxes in the document,
             except the current select box:*/
+        function closeAllSelect(elmnt) {
             var x, y, i, xl, yl, arrNo = [];
             x = document.getElementsByClassName("select-items");
             y = document.getElementsByClassName("select-selected");
@@ -146,18 +139,6 @@ export class View {
         /*if the user clicks anywhere outside the select box,
         then close all select boxes:*/
         document.addEventListener("click", closeAllSelect);
-
-        /***************************
-         /* END  Dropdown Option
-         /***************************/
     }
-
-
-
-
-
 }
-
-// Initialize the popup
-
 
