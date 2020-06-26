@@ -5,17 +5,9 @@
 
 
 
-/projekte/:id	
+/projekte/:id	-> ERLEDIGT
  
-/projekte?bauherr="EingabeClient"&Bauart="EingabeClient"
-
-
-In/projekt mit SQL Code implantieren:
-
-/projektverfasserprojekt/:Projektid	-->	"select projektverfasserid from projektverfasserprojekt where projektid = <projektid>" "select projekterfasser from projekterfasser where projektverfasserid = <projektverfasserid>" 
-
-
-/leistungprojekt/:projektId	-->	"select leistungid from leistungprojekt where projektid = <projektid>" "select leistung from leistung where leistungid = <leistungid>" 
+/projekte?bauherr="EingabeClient"&Bauart="EingabeClient"&Realisierungsjahr="EingabeClient"
 
 
 Für Filterfunktionen:

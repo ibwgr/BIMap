@@ -1,8 +1,6 @@
 package ch.ibw.appl.bimap.server.projekte.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class Projekt {
@@ -22,12 +20,6 @@ public class Projekt {
     public String bauart;
     public String projektverfasser;
     public String leistungen;
-
-
-
-    @Id
-    @GeneratedValue
-    public Long id;
 
     public static Projekt create(int idprojekt, int projektnummer, String projektname, int ortid, int koordx, int koordy, int realisierungsjahr, float bausumme, int bauherrid) {
         Projekt pr = new Projekt();

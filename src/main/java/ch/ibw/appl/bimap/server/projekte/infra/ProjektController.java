@@ -5,30 +5,26 @@ import ch.ibw.appl.bimap.server.shared.service.JSONSerializer;
 import spark.Service;
 
 public class ProjektController {
-  private ProjektService projektService;
+    private ProjektService projektService;
 
-  public ProjektController(Boolean isTest) {
-    projektService = new ProjektService(new ProjektSQL2ORepository(isTest));
-  }
+    public ProjektController(Boolean isTest, String username, String password) {
+        projektService = new ProjektService(new ProjektSQL2ORepository(isTest, username, password));
+    }
 
-  public void createRoutes(Service server) {
-    JSONSerializer jsonSerializer = new JSONSerializer();
+    public void createRoutes(Service server) {
+        JSONSerializer jsonSerializer = new JSONSerializer();
 
-    server.get("/projekte", (request, response) -> {
-              response.type("application/json");
-              return projektService.all();
-            },
-            jsonSerializer::serialize);
+        server.get("/projekte", (request, response) -> {
+            String bauherr = request.queryParamOrDefault("bauherr", "");
+            String bauart = request.queryParamOrDefault("bauart", "");
+            int realisierungsjahr = Integer.parseInt(request.queryParamOrDefault("realisierungsjahr", "0"));
 
-    server.get("/projekte/:id", (request, response) -> {
-      int id = Integer.parseInt(request.params("id"));
-      return projektService.getById(id);
-    }, jsonSerializer::serialize);
-//
-//    server.post("/angebote", (request, response) -> {
-//      Projekt projekt = jsonSerializer.deserialize(request.body(), new TypeReference<Projekt>() {});
-//      response.status(HttpStatus.CREATED_201);
-//      return projektService.create(projekt);
-//    }, jsonSerializer::serialize);
-  }
+            return projektService.getByFilter(bauherr, bauart, realisierungsjahr);
+            }, jsonSerializer::serialize);
+
+        server.get("/projekte/:id", (request, response) -> {
+            int id = Integer.parseInt(request.params("id"));
+            return projektService.getById(id);
+        }, jsonSerializer::serialize);
+    }
 }

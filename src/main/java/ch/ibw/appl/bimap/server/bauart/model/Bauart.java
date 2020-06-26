@@ -1,30 +1,24 @@
 package ch.ibw.appl.bimap.server.bauart.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 
 @Entity
 public class Bauart {
+    public int idbauart;
     public String bauart;
 
-    @Id
-    @GeneratedValue
-
-    public int idbauart;
-
-    public static Bauart create(String bauartdef) {
+    public static Bauart create(int idbauart, String bauartdef) {
         Bauart bauart = new Bauart();
         bauart.bauart = bauartdef;
+        bauart.idbauart = idbauart;
         return bauart;
     }
 
     @Override
     public String toString() {
         return "Bauart{" +
-                "bauartdef='" + bauart + '\'' +
-                ", id=" + idbauart +
+                "bauart='" + bauart + '\'' +
+                ", idbauart=" + idbauart +
                 '}';
     }
 }

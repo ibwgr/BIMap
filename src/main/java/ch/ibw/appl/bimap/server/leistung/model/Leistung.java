@@ -6,11 +6,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Leistung {
-    public String leistungen;
-
-    @Id
-    @GeneratedValue
     public int idleistung;
+    public String leistungen;
 
     public static Leistung create(String leistungdef) {
         Leistung lp = new Leistung();

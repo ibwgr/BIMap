@@ -1,22 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>sdg</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/filter.css">
 </head>
 <body>
 
+<main id="the-app" class="bimap">
+    <div id="map" class="map"></div>
 
-<div id="map" class="map"></div>
+    <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+    </div>
 
-<div id="popup" class="ol-popup">
-    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-    <div id="popup-content"></div>
-</div>
+    <div id="mySidenav" class="sidenav">
+        <a id="closebtn" href="javascript:void(0)" class="closebtn">&times;</a>
 
+        <h2>Filter</h2>
+        <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
 
-<script type="module" src="js/main.js"></script>
-<script src="//api3.geo.admin.ch/loader.js?version=4.4.2&ignore_polyfill=true" type="text/javascript"></script>
+        <div class="custom-select" id="bauherr1">
+            <select id="bauherr">
+                <option value="0">Bauherr:</option>
+            </select>
+        </div>
+
+        <div class="custom-select" id="bauart1">
+            <select id="bauart">
+                <option value="0">Bauart:</option>
+            </select>
+        </div>
+
+        <div class="custom-select" id="realJahr1">
+            <select id="realisierungsjahr">
+                <option value="0">Realisierungsjahr:</option>
+            </select>
+        </div>
+
+        <button class="button button1" id="FilterIt">Anzeigen</button>
+
+    </div>
+
+    <div class="closer" id="openbtn" style="font-size:30px;cursor:pointer">&#9776;</div>
+
+    <div id="cardswitch">
+        <img id="example" src="img/card1.jpg" width="" height="">
+    </div>
+
+</main>
+
+<script type="module" src="js/app.js"></script>
+<script src="//api3.geo.admin.ch/loader.js?version=4.4.2" type="text/javascript"></script>
+
 </body>
 </html>

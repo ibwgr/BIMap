@@ -3,25 +3,25 @@ package ch.ibw.appl.bimap.server.projekte.infra;
 import ch.ibw.appl.bimap.server.projekte.model.Projekt;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjektSQL2ORepository {
 
   private final Sql2o sql2o;
 
-  public ProjektSQL2ORepository(boolean isTest) {
+  public ProjektSQL2ORepository(boolean isTest, String username, String password) {
     if(isTest){
-      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", "SAS", "sas123");
+      sql2o = new Sql2o("jdbc:hsqldb:mem:bimap", username, password);
       try(Connection conn = sql2o.open()){
         executeFile(conn, "src/main/resources/META-INF/CreateTables.sql");
         executeFile(conn, "src/main/resources/META-INF/InsertData.sql");
       }
     }else{
-      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", "root", "");
+      sql2o = new Sql2o("jdbc:mysql://localhost:3306/bimap", username, password);
     }
   }
 
@@ -39,11 +39,6 @@ public class ProjektSQL2ORepository {
       }
     }
   }
-
-//  String select = "SELECT projekt.idprojekt, projekt.projektnummer, projekt.projektname, ort.ort, ort.plz, projekt.koordx, projekt.koordy, projekt.realisierungsjahr, projekt.bausumme, bauherr.bauherr " +
-//          "FROM bimap.projekt " +
-//          "INNER JOIN bimap.ort ON projekt.ortid=ort.idort " +
-//          "INNER JOIN bimap.bauherr ON projekt.bauherrid=bauherr.idbauherr";
 
   public List<Projekt> all() {
     try(Connection conn = sql2o.open()){
@@ -86,12 +81,11 @@ public class ProjektSQL2ORepository {
             leistungString += leistung + " ";
           }
         }
-        projekt.leistungen = pvString;
+        projekt.leistungen = leistungString;
       }
       return projekts;
     }
   }
-
 
   public Projekt get(int id) {
     List<Projekt> projekte = all();
@@ -103,7 +97,15 @@ public class ProjektSQL2ORepository {
     return null;
   }
 
-  public Projekt findByDescription(String description) {
-    return null;
+  public List<Projekt> getByFilter(String bauherr, String bauart, int realisierungsjahr) {
+    List<Projekt> projekte = all();
+    List<Projekt> filterdProjekte = new ArrayList<>();
+
+    for (Projekt projekt : projekte){
+      if (projekt.bauherr.contains(bauherr) && projekt.bauart.contains(bauart) && projekt.realisierungsjahr >= realisierungsjahr) {
+        filterdProjekte.add(projekt);
+      }
+    }
+    return filterdProjekte;
   }
 }

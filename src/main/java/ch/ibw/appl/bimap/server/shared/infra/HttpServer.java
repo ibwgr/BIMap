@@ -1,8 +1,7 @@
 package ch.ibw.appl.bimap.server.shared.infra;
 
+import ch.ibw.appl.bimap.server.bauaherr.infra.BauherrController;
 import ch.ibw.appl.bimap.server.bauart.infra.BauartController;
-import ch.ibw.appl.bimap.server.hello.HelloController;
-import ch.ibw.appl.bimap.server.leistung.infra.LeistungController;
 import ch.ibw.appl.bimap.server.projekte.infra.ProjektController;
 import ch.ibw.appl.bimap.server.shared.service.ValidationError;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,27 +10,28 @@ import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.LoggerFactory;
 import spark.Service;
 
-import static spark.Spark.options;
-
 public class HttpServer {
 
   private final String httpPort;
   private final Boolean isTest;
+  private final String username;
+  private final String password;
   private Service server;
 
-  public HttpServer(String httpPort, Boolean isTest) {
+  public HttpServer(String httpPort, Boolean isTest, String SQLUserName, String SQLPassword) {
     this.httpPort = httpPort;
     this.isTest = isTest;
+    this.username = SQLUserName;
+    this.password = SQLPassword;
   }
 
   public void start() {
     server = Service.ignite();
     server.port(Integer.parseInt(httpPort));
 
-    new BauartController(isTest).createRoutes(server);
-    new HelloController(isTest).createRoutes(server);
-    new ProjektController(isTest).createRoutes(server);
-    new LeistungController(isTest).createRoutes(server);
+    new BauartController(isTest, username, password).createRoutes(server);
+    new ProjektController(isTest, username, password).createRoutes(server);
+    new BauherrController(isTest, username, password).createRoutes(server);
 
     server.options("/*",
             (request, response) -> {
@@ -56,6 +56,11 @@ public class HttpServer {
 
     server.before(((request, response) -> {
       response.header("Access-Control-Allow-Origin", "*");
+      if(!request.pathInfo().equalsIgnoreCase("/hello")){
+        if(!request.headers("Accept").contains("application/json")){
+          server.halt(HttpStatus.NOT_ACCEPTABLE_406);
+        }
+      }
     }));
 
     server.afterAfter(((request, response) -> response.type("application/json")));
