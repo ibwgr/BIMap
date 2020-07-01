@@ -140,5 +140,14 @@ export class View {
         then close all select boxes:*/
         document.addEventListener("click", closeAllSelect);
     }
+    changeCardSmall() {
+        let element=document.getElementById('example')
+        if (element.src.match("card1"))
+        {
+            element.src="img/card2.jpg";
+        }else{
+            element.src="img/card1.jpg";
+        }
+    }
 }
 

@@ -23,18 +23,8 @@ export class Controller {
         })
         document.getElementById("cardswitch").addEventListener('click', event => {
             this.map.changeMap()
-            this.changeCardSmall()
+            this.view.changeCardSmall()
         });
-    }
-
-    changeCardSmall() {
-        let element=document.getElementById('example')
-        if (element.src.match("card1"))
-        {
-            element.src="img/card2.jpg";
-        }else{
-            element.src="img/card1.jpg";
-        }
     }
 
 }
